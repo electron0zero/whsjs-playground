@@ -69,68 +69,10 @@
     $("html").toggleClass("modal-open");
   });
 
-
-  // Used by preview and download to compile editor panes and "Imports" into valid html
-  function buildOutput(consoleJS) {
-
-    var content = {
-      js: jsField.getValue()
-    };
-
-    // String to hold elements to build HTML output
-    // This html is what we show in preview pane
-    var html = '';
-    html += '<!DOCTYPE html>\n';
-    html += '<html lang="en">\n';
-    html += '<head>\n';
-    html += '<meta charset="UTF-8">\n';
-
-    html += '<style type="text/css">\n';
-    html += content.style;
-    html += '\n</style>\n';
-
-    html += '<script src="whitestorm.js"></script>\n';
-
-    html += '</head>\n';
-    html += '<body>\n';
-    html += content.html;
-
-    html += '\n<script>\n';
-    //add boilerplaete here before putting content from users
-    html += content.js;
-    html += '\n</script>\n';
-    html += '</body>\n';
-    html += '</html>';
-
-    //log out preview output
-    console.log(html);
-
-    return html;
-  }
-
-
   // Update preview window AND js console on click of "Run" button
   $("#run").on("click", function() {
     preview();
   });
-
-  function preview(delay) {
-    delay = delay || 0;
-    var timer = null;
-    if (timer) {
-      window.clearTimeout(timer);
-    }
-    timer = window.setTimeout(function() {
-      timer = null;
-      // pass true as we want the pseudo console.js script
-      //console.time('buildOutput'); // start timer for debugging
-      var textToWrite = buildOutput(true);
-
-      (document.getElementById("iframe").contentWindow.document).write(textToWrite);
-      (document.getElementById("iframe").contentWindow.document).close();
-      //console.timeEnd('buildOutput'); // end timer for debugging
-    }, delay);
-  }
 
   // Download HTML/CSS/JS
   // Source: http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
@@ -157,8 +99,8 @@
       $download.href = window.URL.createObjectURL(textFileAsBlob);
     }
     $download.onclick = destroyClickedElement;
-		$download.style.display = "none";
-		document.body.appendChild($download);
+      $download.style.display = "none";
+      document.body.appendChild($download);
     $download.click();
   });
 
@@ -192,6 +134,62 @@
   });
 
 
+  // Used by preview and download to compile editor panes and "Imports" into valid html
+  function buildOutput(consoleJS) {
+
+    var content = {
+      js: jsField.getValue()
+    };
+
+    // String to hold elements to build HTML output
+    // This html is what we show in preview pane
+    var html = '';
+    html += '<!DOCTYPE html>\n';
+    html += '<html lang="en">\n';
+    html += '<head>\n';
+    html += '<meta charset="UTF-8">\n';
+
+    html += '<style type="text/css">\n';
+    //css for preview goes here
+    html += '\n</style>\n';
+
+    //whitestormjs included in page
+    html += '<script src="whitestorm.js"></script>\n';
+    
+    html += '</head>\n';
+    html += '<body>\n';
+    //HTML body for output goes here
+    html += '\n<script>\n';
+    //js that user typed in jsedit(javascript editer pane) window comes here from that window
+    html += content.js;
+    html += '\n</script>\n';
+    html += '</body>\n';
+    html += '</html>';
+
+    //log out preview output
+    console.log(html);
+
+    return html;
+  }
+
+  function preview(delay) {
+    delay = delay || 0;
+    var timer = null;
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    timer = window.setTimeout(function() {
+      timer = null;
+      // pass true as we want the pseudo console.js script
+      //console.time('buildOutput'); // start timer for debugging
+      var textToWrite = buildOutput(true);
+
+      (document.getElementById("iframe").contentWindow.document).write(textToWrite);
+      (document.getElementById("iframe").contentWindow.document).close();
+      //console.timeEnd('buildOutput'); // end timer for debugging
+    }, delay);
+  }
+
   // Apply theme and save to localStorage
   function updateTheme(theme) {
     theme = "ace/theme/" + theme;
@@ -212,14 +210,10 @@
   window.onbeforeunload = function (e) {
 
     // Save current buffers into sessionStorage
-    // sessionStorage.setItem("html", htmlField.getValue());
-    // sessionStorage.setItem("css", cssField.getValue());
     sessionStorage.setItem("js", jsField.getValue());
 
     // save selected imports into sessionStorage
     sessionStorage.setItem("use", JSON.stringify(use));
-    // // and if using LESS/Sass make sure the editor mode is saved as well
-    // sessionStorage.setItem("cssMode", cssField.getSession().getMode().$id);
 
     // If we haven't been passed the event get the window.event
     e = e || window.event;
@@ -229,4 +223,5 @@
     // // For Chrome, Safari, IE8+ and Opera 12+
     return message;
   };
+
 })();
