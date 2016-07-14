@@ -184,7 +184,7 @@
 
     if (moveEnabled) {
       const percent = (e.clientX - 16) / (window.innerWidth - 32) * 100;
-      const percent2 = 100 - (e.clientX - (16 - divWidth)) / (window.innerWidth - 32) * 100;
+      const percent2 = 100 - (e.clientX - (16 - divWidth - 1)) / (window.innerWidth - 32) * 100;
 
       if (percent > 20 && percent2 > 20) {
         $("#editor").width(percent + "%");
