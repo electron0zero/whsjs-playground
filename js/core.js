@@ -2,9 +2,9 @@
 (function core() {
   "use strict";
   // Globals
-  // ---
-  // For buildOutput() creation. Toggle includes in html output.
-  // ---
+   var autosave = false;
+   var autosaveAfterSec = 300;   //time in seconds after auotsave happens
+   var mytime;
   // End Globals
 
    // Check if a new appcache is available on page load. If so, ask to load it.
@@ -50,7 +50,7 @@
       enableLiveAutocompletion: true,
       showInvisibles: true,
       autoScrollEditorIntoView: true,
-      //useWorker:true
+      useWorker:true
     });
 
     // stop warnings about set autoScrolling = Infinity
@@ -81,7 +81,7 @@
                 //if you have to silence more warnings/error just add there warning/error code here
                   "-W117": false
               }]);
-            //console.log("worker is silenced");
+            console.log("worker is silenced");
           }
           //console.log("changeMode");
       }
@@ -142,11 +142,19 @@
 
   // Save current editor panes to localStorage
   $("#save").on("click", function() {
-    console.log("save");
-    var store = {
-      js: jsField.getValue()
-    };
-    localStorage.setItem("core", JSON.stringify(store));
+    save();
+  });
+
+  // Toggle autosave mode.
+  $("#autosaveToggle").on("click", function() {
+    if (autosave === false) {
+        autosave = true;
+        saveLoop();
+    } else if (autosave === true ) {
+        autosave = false;
+        clearTimeout(mytime);
+    }
+    $(this).toggleClass("btn-active");
   });
 
   // Load into editors from localStorage if exists
@@ -155,8 +163,12 @@
     var store;
     if (localStorage.core) {
       store = JSON.parse(localStorage.core);
-      jsField.setValue(store.js);
-      jsField.clearSelection();
+      if (store.js == "") {
+          alert("local Storage is empty, nothing to load...")
+      } else {
+          jsField.setValue(store.js);
+          jsField.clearSelection();
+      }
     } else {
       alert("No previous session found...");
     }
@@ -218,6 +230,22 @@
       //console.timeEnd('buildOutput'); // end timer for debugging
     }, delay);
   }
+
+  function save(){
+      console.log("save");
+      var store = {
+        js: jsField.getValue()
+      };
+      localStorage.setItem("core", JSON.stringify(store));
+  }
+
+  function saveLoop() {
+    if (autosave === true) {
+      console.log("autosave save");
+      save();
+      mytime = setTimeout(saveLoop, autosaveAfterSec*1000);
+  }};
+
 
   // Apply theme and save to localStorage
   function updateTheme(theme) {
