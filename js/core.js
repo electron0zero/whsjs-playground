@@ -27,6 +27,7 @@
   // Init ACE Editor and set options;
   (function initAce() {
     var aceTheme;
+    //currentely we are not saveing it implimant that part
     if (localStorage.getItem("theme")) {
       aceTheme = localStorage.getItem("theme");
     } else {
@@ -36,21 +37,29 @@
 
 
     // JS Editor
+    ace.require("ace/ext/language_tools");
     window.jsField = ace.edit("js");
     jsField.setOptions({
       theme: aceTheme,
       displayIndentGuides: true,
       mode: "ace/mode/javascript",
       tabSize: 2,
-      //asi: true,
       useSoftTabs: true,
       showPrintMargin: false,
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      highlightGutterLine: true,
+      enableLiveAutocompletion: true,
+      showInvisibles: true,
+      autoScrollEditorIntoView: true,
+      //useWorker:true
     });
 
-    //set warnings off
-    // jsField.$worker.call("changeOptions", [{asi: true}])
+    // stop warnings about set autoScrolling = Infinity
+    // set it to 0 (or comment out) to see the warning in console
+    jsField.$blockScrolling = Infinity;
 
-    //console.log(jsField);
+
 
     // Retrieve values from sessionStorage if set
     (function sessionStorageGet() {
@@ -65,6 +74,15 @@
 
   })();
   // END ACE Editor
+
+  //turn off warnings about "WHS is not defined" and "missing semicolons"
+  //temp. solution is disable worker that does that worker
+  //find more elegent soultion for this then disable worker
+  jsField.session.setUseWorker(false)
+  //look into this later on
+  //jsField.$worker.call("changeOptions", [{asi: true}])
+
+
 
   $("#previewToggle, #iframeClose").on("click", function() {
     console.log("previewToggle");
@@ -172,7 +190,7 @@
     html += '</html>';
 
     //log out preview output
-    console.log(html);
+    //console.log(html);
 
     return html;
   }
