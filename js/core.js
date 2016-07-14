@@ -174,6 +174,25 @@
     }
   });
 
+  let moveEnabled = false;
+
+  $("#divider").on('mousedown', () => {moveEnabled = true});
+  $(document).on('mouseup', () => {moveEnabled = false});
+
+  $(window).on('mousemove', (e) => {
+    const divWidth = 5;
+
+    if (moveEnabled) {
+      const percent = (e.clientX - 16) / (window.innerWidth - 32) * 100;
+      const percent2 = 100 - (e.clientX - (16 - divWidth)) / (window.innerWidth - 32) * 100;
+
+      if (percent > 20 && percent2 > 20) {
+        $("#editor").width(percent + "%");
+        $(".preview").width(percent2 - 10 + "%");
+      }
+    }
+  });
+
   // Used by preview and download to compile editor panes and "Imports" into valid html
   function buildOutput() {
 
