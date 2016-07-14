@@ -33,7 +33,6 @@
 
     }
 
-
     // JS Editor
     ace.require("ace/ext/language_tools");
     window.jsField = ace.edit("js");
@@ -50,7 +49,8 @@
       enableLiveAutocompletion: true,
       showInvisibles: true,
       autoScrollEditorIntoView: true,
-      useWorker:true
+      useWorker:true,
+      fontSize: 16
     });
 
     // stop warnings about set autoScrolling = Infinity

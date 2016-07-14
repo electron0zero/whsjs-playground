@@ -92,7 +92,7 @@ html, body, section {
 }
 
 body {
-  background: #eaeaea;
+  background: #2D3134;
   font-family: "Clear Sans";
   font-size: 100%;
   text-rendering: optimizeLegibility;
@@ -108,7 +108,7 @@ h1 {
 }
 
 section {
-  background: #fff;
+  background: #2D3134;
   width: 100%;
   padding: 1rem;
   -webkit-box-shadow: rgba(0,0,0,.15) 0 15px 50px;
@@ -374,3 +374,92 @@ html.modal-open #iframeClose {
       transition: background 0.2s ease-in-out;
   opacity: 1;
 }*/
+
+/* CUSTOM STYLES */
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(45, 49, 52, 0.97);
+}
+
+section {
+  padding: 0px 16px;
+}
+
+.gradient {
+  margin: 0px 16px;
+  height: calc(100% - 560px);
+  width: calc(100% - 32px);
+  position: absolute;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#272b2d+0,2d3134+100 */
+background: rgb(39,43,45); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(39,43,45,1) 0%, transparent 50%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(39,43,45,1) 0%,transparent 50%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(39,43,45,1) 0%,transparent 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+#editor {
+  padding: 30px 0px;
+  background: #272B2D;
+  border-radius: 4px 0 0 0;
+  border: none;
+}
+
+.ace_gutter, .ace_content {
+  background: #272b2d !important;
+}
+
+.ace_line span.ace_invisible_eol {
+  display: none;
+}
+
+.btn {
+  cursor: pointer;
+  transition: background 0.5s ease-in-out;
+  -webkit-transition: background 0.5s ease-in-out;
+  -moz-transition: background 0.5s ease-in-out;
+  -o-transition: background 0.5s ease-in-out;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 0 0 rgba(255, 255, 255, 0.5), 0 1px 1px #0e74c3;
+  padding: 0 10px;
+  line-height: 30px;
+  text-decoration: none;
+  border: none;
+  margin: 5px 2px;
+  background-color: #373b3e !important;
+  color: white !important;
+  font-family: Whitney SSm A,Whitney SSm B,Helvetica,Arial,sans-serif;
+}
+
+.btn::after {
+  content: "" !important;
+}
+
+.btn:hover {
+  transition: background 0.5s ease-in-out;
+  -webkit-transition: background 0.5s ease-in-out;
+  -moz-transition: background 0.5s ease-in-out;
+  -o-transition: background 0.5s ease-in-out;
+  background: #4aafed !important;
+}
+
+#jsLabel, #iframeLabel {
+  color: white;
+  background: none;
+  border: none;
+}
+
+.preview {
+  border: 5px solid #272b2d;
+  border-radius: 0 4px 0 0;
+}
