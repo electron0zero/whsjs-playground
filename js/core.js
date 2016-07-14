@@ -4,10 +4,8 @@
   // Globals
   // ---
   // For buildOutput() creation. Toggle includes in html output.
-  var use = {};
   // ---
   // End Globals
-
 
    // Check if a new appcache is available on page load. If so, ask to load it.
   window.addEventListener("load", function(e) {
@@ -59,8 +57,6 @@
     // set it to 0 (or comment out) to see the warning in console
     jsField.$blockScrolling = Infinity;
 
-
-
     // Retrieve values from sessionStorage if set
     (function sessionStorageGet() {
       if (sessionStorage.getItem("js")) {
@@ -75,19 +71,28 @@
   })();
   // END ACE Editor
 
-  //turn off warnings about "WHS is not defined" and "missing semicolons"
-  //temp. solution is disable worker that does that worker
-  //find more elegent soultion for this then disable worker
-  jsField.session.setUseWorker(false)
-  //look into this later on
-  //jsField.$worker.call("changeOptions", [{asi: true}])
-
+  //turn off warnings "WHS is not defined"
+  //this code snippet is explained here [https://github.com/ajaxorg/ace/issues/895]
+  //and here [https://github.com/ajaxorg/ace/issues/895#issuecomment-232725635]
+    jsField.session.on('changeMode', function(e, session){
+      if ("ace/mode/javascript" === session.getMode().$id) {
+          if (!!session.$worker) {
+              session.$worker.send("setOptions", [{
+                //if you have to silence more warnings/error just add there warning/error code here
+                  "-W117": false
+              }]);
+            //console.log("worker is silenced");
+          }
+          //console.log("changeMode");
+      }
+    });
 
 
   $("#previewToggle, #iframeClose").on("click", function() {
     console.log("previewToggle");
     $("#previewToggle").toggleClass("btn-active");
     $("html").toggleClass("modal-open");
+    preview();  //runs the code when preview is Toggleed
   });
 
   // Update preview window AND js console on click of "Run" button
@@ -158,7 +163,7 @@
   });
 
   // Used by preview and download to compile editor panes and "Imports" into valid html
-  function buildOutput(consoleJS) {
+  function buildOutput() {
 
     var content = {
       js: jsField.getValue()
@@ -206,7 +211,7 @@
       timer = null;
       // pass true as we want the pseudo console.js script
       //console.time('buildOutput'); // start timer for debugging
-      var textToWrite = buildOutput(true);
+      var textToWrite = buildOutput();
 
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
