@@ -1,14 +1,13 @@
 /*global $:false, ace:false, htmlField:false, cssField:false, jsField:false, jqconsole:false*/
-(function cloudEdit() {
+(function core() {
   "use strict";
   // Globals
   // ---
   // For buildOutput() creation. Toggle includes in html output.
-  var use = {
-    liveEdit: true
-  };
-
+  var use = {};
+  // ---
   // End Globals
+
 
    // Check if a new appcache is available on page load. If so, ask to load it.
   window.addEventListener("load", function(e) {
@@ -32,6 +31,7 @@
       aceTheme = localStorage.getItem("theme");
     } else {
       aceTheme = "ace/theme/twilight";
+
     }
 
 
@@ -42,15 +42,18 @@
       displayIndentGuides: true,
       mode: "ace/mode/javascript",
       tabSize: 2,
+      //asi: true,
       useSoftTabs: true,
       showPrintMargin: false,
-
     });
+
+    //set warnings off
+    // jsField.$worker.call("changeOptions", [{asi: true}])
+
+    //console.log(jsField);
 
     // Retrieve values from sessionStorage if set
     (function sessionStorageGet() {
-
-
       if (sessionStorage.getItem("js")) {
         jsField.setValue(sessionStorage.getItem("js"));
         jsField.clearSelection();
@@ -58,26 +61,27 @@
       if (sessionStorage.getItem("use")) {
         use = JSON.parse(sessionStorage.getItem("use"));
       }
-
     })();
 
   })();
   // END ACE Editor
 
   $("#previewToggle, #iframeClose").on("click", function() {
+    console.log("previewToggle");
     $("#previewToggle").toggleClass("btn-active");
     $("html").toggleClass("modal-open");
   });
 
   // Update preview window AND js console on click of "Run" button
   $("#run").on("click", function() {
+    console.log("Run");
     preview();
   });
 
   // Download HTML/CSS/JS
   // Source: http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
   $("#download").on("click", function() {
-
+    console.log("download");
     function destroyClickedElement(event) {
       document.body.removeChild(event.target);
     }
@@ -115,24 +119,25 @@
 
   // Save current editor panes to localStorage
   $("#save").on("click", function() {
+    console.log("save");
     var store = {
       js: jsField.getValue()
     };
-    localStorage.setItem("cloudEdit", JSON.stringify(store));
+    localStorage.setItem("core", JSON.stringify(store));
   });
 
   // Load into editors from localStorage if exists
   $("#load").on("click", function() {
+    console.log("Load");
     var store;
-    if (localStorage.cloudEdit) {
-      store = JSON.parse(localStorage.cloudEdit);
+    if (localStorage.core) {
+      store = JSON.parse(localStorage.core);
       jsField.setValue(store.js);
       jsField.clearSelection();
     } else {
       alert("No previous session found...");
     }
   });
-
 
   // Used by preview and download to compile editor panes and "Imports" into valid html
   function buildOutput(consoleJS) {
@@ -155,7 +160,7 @@
 
     //whitestormjs included in page
     html += '<script src="whitestorm.js"></script>\n';
-    
+
     html += '</head>\n';
     html += '<body>\n';
     //HTML body for output goes here
@@ -173,6 +178,7 @@
   }
 
   function preview(delay) {
+    console.log("preview is called");
     delay = delay || 0;
     var timer = null;
     if (timer) {
@@ -193,8 +199,6 @@
   // Apply theme and save to localStorage
   function updateTheme(theme) {
     theme = "ace/theme/" + theme;
-    // htmlField.setTheme(theme);
-    // cssField.setTheme(theme);
     jsField.setTheme(theme);
     // Uncomment below if you want the page/body background to follow the set theme colour.
     // we delay obtaining the css colour by 1s as it takes a moment to propagate
@@ -208,12 +212,6 @@
 
   // Detect a user leaving a page and display a message
   window.onbeforeunload = function (e) {
-
-    // Save current buffers into sessionStorage
-    sessionStorage.setItem("js", jsField.getValue());
-
-    // save selected imports into sessionStorage
-    sessionStorage.setItem("use", JSON.stringify(use));
 
     // If we haven't been passed the event get the window.event
     e = e || window.event;
