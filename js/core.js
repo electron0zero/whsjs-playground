@@ -44,12 +44,12 @@
       useSoftTabs: true,
       showPrintMargin: false,
       enableBasicAutocompletion: true,
-      enableSnippets: true,
+      enableSnippets: false,
       highlightGutterLine: true,
-      enableLiveAutocompletion: true,
+      enableLiveAutocompletion: false,
       showInvisibles: true,
       autoScrollEditorIntoView: true,
-      useWorker:true,
+      useWorker: true,
       fontSize: 16
     });
 
