@@ -79,7 +79,7 @@
           if (!!session.$worker) {
               session.$worker.send("setOptions", [{
                 //if you have to silence more warnings/error just add there warning/error code here
-                  "-W117": false,
+                  "-W117": false, // <sometthing> is not defined
                   "-W104": false // Warning about es6
               }]);
             console.log("worker is silenced");
