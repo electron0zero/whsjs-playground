@@ -245,6 +245,7 @@
       //console.time('buildOutput'); // start timer for debugging
       var textToWrite = buildOutput();
 
+      (document.getElementById("iframe").contentWindow.document).open();
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
       //console.timeEnd('buildOutput'); // end timer for debugging
