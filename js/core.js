@@ -178,14 +178,14 @@
   let moveEnabled = false;
 
   $("#divider").on('mousedown', () => {moveEnabled = true});
-  $(document).on('mouseup', () => {moveEnabled = false});
+  $([document, document.getElementById("iframe").contentWindow.document]).on('mouseup', () => {moveEnabled = false});
 
-  $(window).on('mousemove', (e) => {
+  $([window, document.getElementById("iframe").contentWindow]).on('mousemove', (e) => {
     const divWidth = 5;
 
     if (moveEnabled) {
-      const percent = (e.clientX - 16) / (window.innerWidth - 32) * 100;
-      const percent2 = 100 - (e.clientX - (16 - divWidth - 1)) / (window.innerWidth - 32) * 100;
+      const percent = (e.screenX - 16) / (window.innerWidth - 32) * 100;
+      const percent2 = 100 - (e.screenX - (16 - divWidth - 1)) / (window.innerWidth - 32) * 100;
 
       if (percent > 20 && percent2 > 20) {
         $("#editor").width(percent + "%");
