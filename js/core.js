@@ -1,4 +1,3 @@
-/*global $:false, ace:false, htmlField:false, cssField:false, jsField:false, jqconsole:false*/
 (function core() {
   "use strict";
   // Globals
@@ -91,6 +90,10 @@
 
   $("#previewToggle, #iframeClose").on("click", function() {
     console.log("previewToggle");
+    //this removes width style (which is added when we resize pans) of pans when we preview it
+    $("#preview").css("width", "");
+    $("#editor").css("width", "");
+
     $("#previewToggle").toggleClass("btn-active");
     $("html").toggleClass("modal-open");
     preview();  //runs the code when preview is Toggleed
