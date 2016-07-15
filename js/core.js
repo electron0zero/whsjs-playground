@@ -245,7 +245,15 @@
       //console.time('buildOutput'); // start timer for debugging
       var textToWrite = buildOutput();
 
+      // Fix for const and let (redefine iframe).
+      document.getElementById("iframe").remove();
+      var elem = document.createElement('iframe');
+      elem.innerHTML = '<iframe id="iframe" name="preview" sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms" allowtransparency="true"></iframe>';
+      elem.id ="iframe";
+      document.querySelector(".preview").appendChild(elem);
+
       (document.getElementById("iframe").contentWindow.document).open();
+      (document.getElementById("iframe").contentWindow.document).clear();
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
       //console.timeEnd('buildOutput'); // end timer for debugging
