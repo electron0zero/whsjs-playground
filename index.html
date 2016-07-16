@@ -33,14 +33,18 @@
   <section>
       <!-- Buttions div -->
       <div class="column-100 padding-up-down-10 center">
-        <button class="btn" id="autosaveToggle" title="Auto Save">Auto Save</button>
-        <button class="btn" id="previewToggle" title="Enlarge Preview">Preview</button>
-        <button class="btn" id="clear" title="Click to clear all panes">Clear</button>
-        <button class="btn" id="download" title="Download to computer">Download</button>
-        <button class="btn" id="save" title="Save to localStorage">Save</button>
-        <button class="btn" id="load" title="Load from localStorage">Load</button>
-        <a class="btn" href="#share" id="generate" title="generate url">Share</a>
-        <button class="btn" id="run" title="Run">Run</button>
+        <!-- Float: left -->
+        <button class="btn" id="clear" title="Click to clear all panes"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
+
+        <!-- Float: center -->
+        <button class="btn" id="autosaveToggle" title="Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
+        <button class="btn" id="previewToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Preview</button>
+        <button class="btn" id="download" title="Download to computer"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+        <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
+        <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
+        <!-- Float: right -->
+        <button class="btn" id="save" title="Save to localStorage"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+        <button class="btn" id="load" title="Load from localStorage"><i class="fa fa-upload" aria-hidden="true"></i> Load</button>
       </div>
     <!-- <div id="window-container" > -->
         <!-- js code editer div -->
@@ -62,7 +66,16 @@
     <!-- </div> -->
   </section>
 
-  <div class="gradient"></div>
+  <div class="gradient">
+    <ul class="share-buttons">
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Facebook.png"></a></li>
+      <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&text=:%20http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&via=whitestormjs" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Twitter.png"></a></li>
+      <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Google+.png"></a></li>
+      <li><a href="http://www.reddit.com/submit?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=" target="_blank" title="Submit to Reddit" onclick="window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Reddit.png"></a></li>
+      <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=&summary=&source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/LinkedIn.png"></a></li>
+      <li><a href="http://wordpress.com/press-this.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=&s=" target="_blank" title="Publish on WordPress" onclick="window.open('http://wordpress.com/press-this.php?u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Wordpress.png"></a></li>
+    </ul>
+  </div>
 
   <div id="share">
       <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
