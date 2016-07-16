@@ -4,37 +4,6 @@
   var autosave = false;
   var autosaveAfterSec = 300;   //time in seconds after auotsave happens
   var mytime;
-  var jqXHR;
-  // End Globals
-  //var url = getExampleURL();
-  //console.log(url);
-
-  function getExampleURL(){
-    //test it with : /playground/?example=points&mode=demo
-    var splitURL = location.href.split("?");
-    //console.log(splitURL);
-    var baseURL = splitURL[0];
-    //console.log(baseURL);
-    var exampleURL = splitURL[1];
-    //console.log(exampleURL);
-    var urlObj = exampleURL.split("&");
-    //console.log(urlObj);
-    var params = [];
-    for (var i = 0; i < urlObj.length; i++) {
-        params[i] = urlObj[i].split("=");
-    }
-    //console.log(params[0]);
-    //console.log(params[1]);
-    var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
-    console.log(url);
-    return url;
-  };
-
-  function LoadExample(url){
-    // here we will get file via ajax and load into editor
-  }
-
-  window.addEventListener("load",LoadExample(getExampleURL()), false);
 
   //  // Check if a new appcache is available on page load. If so, ask to load it.
   // window.addEventListener("load", function(e) {
@@ -333,5 +302,48 @@
     // // For Chrome, Safari, IE8+ and Opera 12+
     return message;
   };
+
+    //Load example from URL Starts
+    function getExampleURL(){
+      //test it with : /playground/?example=points&mode=demo
+      var splitURL = location.href.split("?");
+      //console.log(splitURL);
+      var baseURL = splitURL[0];
+      //console.log(baseURL);
+      var exampleURL = splitURL[1];
+      //console.log(exampleURL);
+      var urlObj = exampleURL.split("&");
+      //console.log(urlObj);
+      var params = [];
+      for (var i = 0; i < urlObj.length; i++) {
+          params[i] = urlObj[i].split("=");
+      }
+      //console.log(params[0]);
+      //console.log(params[1]);
+      var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
+      console.log(url);
+      return url;
+    };
+
+    function LoadExample(requestURL){
+      // here we will get file via ajax and load into editor
+      var response = $.ajax({
+              type: "GET",
+              url: requestURL,
+              async: false}).responseText;
+      //console.log(response);
+      addToEditor(response);
+    }
+    //given a response (examples code) it loads that into editor
+    function addToEditor(response){
+      //set text and remove selection off all all text
+      jsField.setValue(response);
+      jsField.clearSelection();
+      //runs the code that we inject into editorfcl
+      preview();
+    }
+
+    window.addEventListener("load",LoadExample(getExampleURL()), false);
+    //Load example from URL end
 
 })();
