@@ -104,6 +104,18 @@
     preview();
   });
 
+  var clipboard = new Clipboard('#url', {
+    text: function(trigger) {
+      var encoded = encodeURI(jsField.getValue());
+      var url = location.href.split("?")[0] + "?code=" + encoded;
+      return url;
+    }
+  });
+
+  clipboard.on('success', function() {
+    alert("URL copied to clipboard!");
+  })
+
   // Download HTML/CSS/JS
   // Source: http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
   $("#download").on("click", function() {
@@ -320,18 +332,27 @@
       }
       //console.log(params[0]);
       //console.log(params[1]);
-      var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
-      console.log(url);
-      return url;
+      if (params[0][0] !== "code") {
+        var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
+        console.log(url);
+        return url;
+      } else {
+        return ["code", decodeURI(splitURL[1].substring(splitURL[1].indexOf("code=") + 5, splitURL[1].length))];
+      }
     };
 
     function LoadExample(requestURL){
-      // here we will get file via ajax and load into editor
-      var response = $.ajax({
-              type: "GET",
-              url: requestURL,
-              async: false}).responseText;
-      //console.log(response);
+      if (typeof requestURL == "string") {
+        // here we will get file via ajax and load into editor
+        var response = $.ajax({
+                type: "GET",
+                url: requestURL,
+                async: false}).responseText;
+        //console.log(response);
+      } else if (requestURL[0] === "code") {
+        var response = requestURL[1];
+      }
+
       addToEditor(response);
     }
     //given a response (examples code) it loads that into editor
