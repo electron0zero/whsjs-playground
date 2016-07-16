@@ -227,19 +227,23 @@
   $("#divider").on('mousedown', () => {moveEnabled = true});
   $([document, document.getElementById("iframe").contentWindow.document]).on('mouseup', () => {moveEnabled = false});
 
-  $([window, document.getElementById("iframe").contentWindow]).on('mousemove', (e) => {
-    const divWidth = 5;
+  function resize_init() {
+    $([window, document.getElementById("iframe").contentWindow]).on('mousemove', (e) => {
+      const divWidth = 5;
 
-    if (moveEnabled) {
-      const percent = (e.screenX - 16) / (window.innerWidth - 32) * 100;
-      const percent2 = 100 - (e.screenX - (16 - divWidth - 1)) / (window.innerWidth - 32) * 100;
+      if (moveEnabled) {
+        const percent = (e.screenX - 16) / (window.innerWidth - 32) * 100;
+        const percent2 = 100 - (e.screenX - (16 - divWidth - 1)) / (window.innerWidth - 32) * 100;
 
-      if (percent > 20 && percent2 > 20) {
-        $("#editor").width(percent + "%");
-        $(".preview").width(percent2 - 10 + "%");
+        if (percent > 20 && percent2 > 20) {
+          $("#editor").width(percent + "%");
+          $(".preview").width(percent2 - 10 + "%");
+        }
       }
-    }
-  });
+    });
+  }
+
+  resize_init();
 
   // Used by preview and download to compile editor panes and "Imports" into valid html
   function buildOutput() {
@@ -303,6 +307,7 @@
       (document.getElementById("iframe").contentWindow.document).clear();
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
+      resize_init();
       //console.timeEnd('buildOutput'); // end timer for debugging
     }, delay);
   }

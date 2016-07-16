@@ -413,7 +413,7 @@ background: linear-gradient(to bottom,  rgba(39,43,45,1) 0%,transparent 50%); /*
   border: none;
 }
 
-.ace_gutter, .ace_content {
+.ace_gutter, .ace_content, #js {
   background: #272b2d !important;
 }
 
@@ -523,4 +523,23 @@ background: linear-gradient(to bottom,  rgba(39,43,45,1) 0%,transparent 50%); /*
 
 .share-section a#facebook hr {
   background-color: #3b5998;
+}
+
+.ace_scrollbar {
+  background-color: #272b2d !important;
+}
+
+.ace_scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+   
+.ace_scrollbar::-webkit-scrollbar-track {
+  color: transparent;
+}
+ 
+.ace_scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  color: #242729;
+  background-color: rgba(0,0,0,0.3);
 }
