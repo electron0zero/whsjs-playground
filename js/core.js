@@ -124,6 +124,7 @@
   });
 
   function get_short_url(long_url, func) {
+    console.log(encodeURI(long_url));
     $.getJSON(
       "https://api-ssl.bitly.com/v3/shorten?callback=?", 
       { 
