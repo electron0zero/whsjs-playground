@@ -1,24 +1,54 @@
 (function core() {
   "use strict";
   // Globals
-   var autosave = false;
-   var autosaveAfterSec = 300;   //time in seconds after auotsave happens
-   var mytime;
+  var autosave = false;
+  var autosaveAfterSec = 300;   //time in seconds after auotsave happens
+  var mytime;
+  var jqXHR;
   // End Globals
+  //var url = getExampleURL();
+  //console.log(url);
 
-   // Check if a new appcache is available on page load. If so, ask to load it.
-  window.addEventListener("load", function(e) {
-    window.applicationCache.addEventListener("updateready", function(e) {
-      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-        // Browser downloaded a new app cache.
-        if (confirm("A new version of this site is available. Load it?")) {
-          window.location.reload();
-        }
-      } else {
-        // Manifest didn't changed. Do NOTHING!
-      }
-    }, false);
-  }, false);
+  function getExampleURL(){
+    //test it with : /playground/?example=points&mode=demo
+    var splitURL = location.href.split("?");
+    //console.log(splitURL);
+    var baseURL = splitURL[0];
+    //console.log(baseURL);
+    var exampleURL = splitURL[1];
+    //console.log(exampleURL);
+    var urlObj = exampleURL.split("&");
+    //console.log(urlObj);
+    var params = [];
+    for (var i = 0; i < urlObj.length; i++) {
+        params[i] = urlObj[i].split("=");
+    }
+    //console.log(params[0]);
+    //console.log(params[1]);
+    var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
+    console.log(url);
+    return url;
+  };
+
+  function LoadExample(url){
+    // here we will get file via ajax and load into editor
+  }
+
+  window.addEventListener("load",LoadExample(getExampleURL()), false);
+
+  //  // Check if a new appcache is available on page load. If so, ask to load it.
+  // window.addEventListener("load", function(e) {
+  //   window.applicationCache.addEventListener("updateready", function(e) {
+  //     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+  //       // Browser downloaded a new app cache.
+  //       if (confirm("A new version of this site is available. Load it?")) {
+  //         window.location.reload();
+  //       }
+  //     } else {
+  //       // Manifest didn't changed. Do NOTHING!
+  //     }
+  //   }, false);
+  // }, false);
 
   // Create Text Area panes
   // Init ACE Editor and set options;
@@ -70,7 +100,7 @@
   })();
   // END ACE Editor
 
-  //turn off warnings "WHS is not defined"
+  //turn off warnings and errors
   //this code snippet is explained here [https://github.com/ajaxorg/ace/issues/895]
   //and here [https://github.com/ajaxorg/ace/issues/895#issuecomment-232725635]
     jsField.session.on('changeMode', function(e, session){
@@ -115,8 +145,7 @@
 
     var $download = document.createElement("a");
 
-    // pass false as we don't want the pseudo console.js script
-    var textToWrite = buildOutput(false);
+    var textToWrite = buildOutput();
     var textFileAsBlob = new Blob([textToWrite], {type: "text/plain"});
     var fileNameToSaveAs = "index.html";
 
