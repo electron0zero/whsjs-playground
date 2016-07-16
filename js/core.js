@@ -104,7 +104,7 @@
     preview();
   });
 
-  var clipboard = new Clipboard('#url', {
+  var clipboard = new Clipboard('#clipboard', {
     text: function(trigger) {
       var encoded = encodeURI(jsField.getValue());
       var url = location.href.split("?")[0] + "?code=" + encoded;
@@ -115,6 +115,40 @@
   clipboard.on('success', function() {
     alert("URL copied to clipboard!");
   })
+
+  $("#facebook").on("click", function() {
+    var encoded = encodeURI(jsField.getValue());
+    var url = location.href.split("?")[0] + "?code=" + encoded;
+    var win = window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, '_blank');
+    win.focus();
+  });
+
+  function get_short_url(long_url, func) {
+    $.getJSON(
+      "https://api-ssl.bitly.com/v3/shorten?callback=?", 
+      { 
+          "format": "json",
+          "access_token": "b26f3b0efc299fba1d3fccb18cfb44cd42b47f26",
+          "longUrl": encodeURI(long_url)
+      },
+      function(response)
+      {
+          console.log(response);
+          func(response.data.url);
+      }
+    );
+  }
+
+  $("#twitter").on("click", function() {
+    var encoded = encodeURI(jsField.getValue());
+    var url = location.href.split("?")[0] + "?code=" + encoded;
+    get_short_url(url, function(short_url) {
+      console.log(short_url);
+      var text = encodeURI("Check out my example ");
+      var win = window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + encodeURI(short_url) + "&hashtags=whitestormjs,threejs,webgl", '_blank');
+      win.focus();
+    });
+  });
 
   // Download HTML/CSS/JS
   // Source: http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/

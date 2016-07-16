@@ -481,3 +481,45 @@ background: linear-gradient(to bottom,  rgba(39,43,45,1) 0%,transparent 50%); /*
   background: red;
   cursor: w-resize;
 }
+
+/* SHARE MODAL */
+
+.share-section {
+  display: block;
+  padding: 150px 0px;
+  margin: 0 auto;
+  width: 550px;
+}
+
+.share-section a {
+  color: #333 !important;
+}
+
+.share-section a#twitter {
+  color: #55acee !important;
+}
+
+.share-section a#facebook {
+  color: #3b5998 !important;
+}
+
+.share-box {
+  display: inline-block;
+  text-align: center;
+  margin: 0 25px;
+  line-height: 1.2;
+}
+
+.share-box hr {
+  background-color: #333;
+  height: 4px;
+  border: none;
+}
+
+.share-section a#twitter hr {
+  background-color: #55acee;
+}
+
+.share-section a#facebook hr {
+  background-color: #3b5998;
+}
