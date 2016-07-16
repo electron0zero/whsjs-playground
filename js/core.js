@@ -124,6 +124,7 @@
   });
 
   function get_short_url(long_url, func) {
+    console.log(encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22"));
     $.getJSON(
       "https://api-ssl.bitly.com/v3/shorten?", 
       { 
