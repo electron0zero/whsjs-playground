@@ -134,6 +134,7 @@
       },
       function(response)
       {
+          console.log(response);
           func(response.data.url);
       }
     );
