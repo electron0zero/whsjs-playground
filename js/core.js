@@ -87,14 +87,11 @@
     });
 
 
-  $("#previewToggle, #iframeClose").on("click", function() {
-    console.log("previewToggle");
-    //this removes width style (which is added when we resize pans) of pans when we preview it
-    $("#preview").css("width", "");
-    $("#editor").css("width", "");
+  $("#fullscreenToggle").on("click", function() {
+    previewFull();  //runs the code when preview is Toggleed
+  });
 
-    $("#previewToggle").toggleClass("btn-active");
-    $("html").toggleClass("modal-open");
+  $(".close-fullscreen").on("click", function() {
     preview();  //runs the code when preview is Toggleed
   });
 
@@ -299,8 +296,39 @@
 
       (document.getElementById("iframe").contentWindow.document).open();
       (document.getElementById("iframe").contentWindow.document).clear();
+      (document.getElementById("iframe-fullscreen").contentWindow.document).write();
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
+      resize_init();
+      //console.timeEnd('buildOutput'); // end timer for debugging
+    }, delay);
+  }
+
+  function previewFull(delay) {
+    console.log("preview fullscreen is called");
+    delay = delay || 0;
+    var timer = null;
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    timer = window.setTimeout(function() {
+      timer = null;
+      // pass true as we want the pseudo console.js script
+      //console.time('buildOutput'); // start timer for debugging
+      var textToWrite = buildOutput();
+
+      // Fix for const and let (redefine iframe).
+      document.getElementById("iframe-fullscreen").remove();
+      var elem = document.createElement('iframe');
+      elem.innerHTML = '<iframe id="iframe-fullscreen" name="preview" sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms" allowtransparency="true"></iframe>';
+      elem.id ="iframe-fullscreen";
+      document.querySelector("#fullscreen .modal-content").appendChild(elem);
+
+      (document.getElementById("iframe-fullscreen").contentWindow.document).open();
+      (document.getElementById("iframe").contentWindow.document).write();
+      (document.getElementById("iframe-fullscreen").contentWindow.document).clear();
+      (document.getElementById("iframe-fullscreen").contentWindow.document).write(textToWrite);
+      (document.getElementById("iframe-fullscreen").contentWindow.document).close();
       resize_init();
       //console.timeEnd('buildOutput'); // end timer for debugging
     }, delay);

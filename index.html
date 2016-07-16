@@ -38,7 +38,7 @@
 
         <!-- Float: center -->
         <button class="btn" id="autosaveToggle" title="Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
-        <button class="btn" id="previewToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Preview</button>
+        <a href="#fullscreen" class="btn" id="fullscreenToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Fullscreen</a>
         <button class="btn" id="download" title="Download to computer"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
         <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
         <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
@@ -80,7 +80,7 @@
   <div id="share">
       <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
       
-      <i class="fa fa-times fa-5x close-share" aria-hidden="true" style="color: #ccc; padding: 20px; cursor: pointer;"></i>
+      <i class="fa fa-times fa-3x close-share" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
           
       <div class="modal-content share-section">
         <a href="#" id="clipboard"><div class="share-box">
@@ -102,6 +102,16 @@
 
   </div>
 
+  <div id="fullscreen">
+    <div class="modal-content">
+      <iframe id="iframe-fullscreen" name="preview"
+        sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms"
+        allowtransparency="true">
+      </iframe>
+    </div>
+    <i class="fa fa-times fa-3x close-fullscreen" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
+  </div>
+
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
   <script src="js/jquery.min.js"></script>
   <script src="js/ace-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -113,6 +123,11 @@
   <script>
     $("#generate").animatedModal({
       modalTarget: "share",
+      color: "#ffffff"
+    });
+
+    $("#fullscreenToggle").animatedModal({
+      modalTarget: "fullscreen",
       color: "#ffffff"
     });
   </script>
