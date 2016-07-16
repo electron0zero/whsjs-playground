@@ -130,7 +130,7 @@
       { 
           "format": "json",
           "access_token": "b26f3b0efc299fba1d3fccb18cfb44cd42b47f26",
-          "longUrl": encodeURI(long_url)
+          "longURL": encodeURI(long_url)
       },
       function(response)
       {
