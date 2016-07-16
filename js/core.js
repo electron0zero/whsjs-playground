@@ -124,18 +124,11 @@
   });
 
   function get_short_url(long_url, func) {
-    console.log(encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22"));
     $.getJSON(
-      "https://api-ssl.bitly.com/v3/shorten?", 
-      { 
-          "format": "json",
-          "access_token": "b26f3b0efc299fba1d3fccb18cfb44cd42b47f26",
-          "longURL": encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22")
-      },
-      function(response)
-      {
-          console.log(response);
-          func(response.data.url);
+      "https://api-ssl.bitly.com/v3/shorten?format=json&access_token=b26f3b0efc299fba1d3fccb18cfb44cd42b47f26&longURL=" + encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22"), 
+      {},
+      function(response) {
+        func(response.data.url);
       }
     );
   }
@@ -143,6 +136,7 @@
   $("#twitter").on("click", function() {
     var encoded = encodeURI(jsField.getValue());
     var url = location.href.split("?")[0] + "?code=" + encoded;
+
     get_short_url(url, function(short_url) {
       var text = encodeURI("Check out my example ");
       var win = window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + encodeURI(short_url) + "&hashtags=whitestormjs,threejs,webgl", '_blank');
