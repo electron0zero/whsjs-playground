@@ -352,31 +352,22 @@
     function getExampleURL(){
       //test it with : /playground/?example=points&mode=demo
       var splitURL = location.href.split("?");
-      //console.log(splitURL);
-      var baseURL = splitURL[0];
-      //console.log(baseURL);
-      var exampleURL = splitURL[1];
-      //console.log(exampleURL);
-      var urlObj = exampleURL.split("&");
-      //console.log(urlObj);
-      var params = [];
-      for (var i = 0; i < urlObj.length; i++) {
-          const param = urlObj[i].split("=");
-
-          for (var k = 0; k < param.length; k++) {
-            if (param[i].indexOf('#') > 0) param[i] = param[i].substring(0, param[i].indexOf('#'));
-          }
-
-          params[i] = param;
+      
+      var regex = /[?&]([^=#]+)=([^&#]*)/g,
+        url = window.location.href,
+        params = {},
+        match;
+      while(match = regex.exec(url)) {
+        params[match[1]] = match[2];
       }
-      console.log(params[0]);
-      //console.log(params[1]);
-      if (params[0][0] !== "code") {
-        var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
-        console.log(url);
+
+      if (!params.code && params.example && params.dir) {
+        var url = splitURL[0] + "examples/" + params.dir + "/" + params.example + ".js";
         return url;
-      } else {
+      } else if (params.code) {
         return ["code", decodeURI(splitURL[1].substring(splitURL[1].indexOf("code=") + 5, splitURL[1].length))];
+      } else {
+        return false;
       }
     };
 
@@ -390,6 +381,8 @@
         //console.log(response);
       } else if (requestURL[0] === "code") {
         var response = requestURL[1];
+      } else {
+        response = "";
       }
 
       addToEditor(response);
