@@ -361,9 +361,15 @@
       //console.log(urlObj);
       var params = [];
       for (var i = 0; i < urlObj.length; i++) {
-          params[i] = urlObj[i].split("=");
+          const param = urlObj[i].split("=");
+
+          for (var k = 0; k < param.length; k++) {
+            if (param[i].indexOf('#') > 0) param[i] = param[i].substring(0, param[i].indexOf('#'));
+          }
+
+          params[i] = param;
       }
-      //console.log(params[0]);
+      console.log(params[0]);
       //console.log(params[1]);
       if (params[0][0] !== "code") {
         var url = baseURL + "examples/" + params[1][1] + "/" + params[0][1] + ".js";
