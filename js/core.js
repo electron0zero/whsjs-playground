@@ -67,7 +67,7 @@
                   "-W117": false, // <sometthing> is not defined
                   "-W104": false // Warning about es6
               }]);
-            console.log("worker is silenced");
+            //console.log("worker is silenced");
           }
           //console.log("changeMode");
       }
@@ -84,7 +84,7 @@
 
   // Update preview window AND js console on click of "Run" button
   $("#run").on("click", function() {
-    console.log("Run");
+    //console.log("Run");
     preview();
   });
 
@@ -131,7 +131,7 @@
   // Download HTML/CSS/JS
   // Source: http://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
   $("#download").on("click", function() {
-    console.log("download");
+    //console.log("download");
     function destroyClickedElement(event) {
       document.body.removeChild(event.target);
     }
@@ -159,7 +159,7 @@
 
   // Clear editors with "Clear" button
   $("#clear").on("click", function() {
-      console.log("clear windows");
+      //console.log("clear windows");
     jsField.setValue("");
     sessionStorage.clear();
     (document.getElementById("iframe").contentWindow.document).write("");
@@ -185,7 +185,7 @@
 
   // Load into editors from localStorage if exists
   $("#load").on("click", function() {
-    console.log("Load");
+    //console.log("Load");
     var store;
     if (localStorage.core) {
       store = JSON.parse(localStorage.core);
@@ -229,6 +229,7 @@
     var content = {
       js: jsField.getValue()
     };
+    var whs = sessionStorage.getItem('whs', whs);
 
     // String to hold elements to build HTML output
     // This html is what we show in preview pane
@@ -241,9 +242,11 @@
     html += '<style type="text/css">\n';
     //css for preview goes here
     html += '\n</style>\n';
-
-    //whitestormjs included in page
-    html += '<script src="whitestorm.js"></script>\n';
+    
+    html += '\n<script>\n';
+    //include whitestormjs in page from sessionStorage.
+    html += whs;
+    html += '\n</script>\n';
 
     html += '</head>\n';
     html += '<body>\n';
@@ -255,14 +258,12 @@
     html += '</body>\n';
     html += '</html>';
 
-    //log out preview output
     //console.log(html);
-
     return html;
   }
 
   function preview(delay) {
-    console.log("preview is called");
+    //console.log("preview is called");
     delay = delay || 0;
     var timer = null;
     if (timer) {
@@ -292,7 +293,7 @@
   }
 
   function previewFull(delay) {
-    console.log("preview fullscreen is called");
+    //console.log("preview fullscreen is called");
     delay = delay || 0;
     var timer = null;
     if (timer) {
@@ -322,7 +323,7 @@
   }
 
   function save(){
-      console.log("save");
+      //console.log("save");
       var store = {
         js: jsField.getValue()
       };
@@ -331,7 +332,7 @@
 
   function saveLoop() {
     if (autosave === true) {
-      console.log("autosave save");
+      //console.log("autosave save");
       save();
       mytime = setTimeout(saveLoop, autosaveAfterSec*1000);
   }};

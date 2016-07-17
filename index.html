@@ -132,7 +132,33 @@
       color: "#ffffff"
     });
   </script>
+  <!-- load and cache whitestormjs in localStorage  -->
+  <!-- <script id="whs" src=></script> -->
+  <script>
+  $(document).ready(function() {
+    //console.log("DOM ready!");
+    var whs = getWHS("whitestorm.js");
+    if(whs){
+        sessionStorage.setItem('whs', whs);
+    } else {
+        alert("Can not load Core framework, please refresh page");
+    }
+  });
+
+  function getWHS(WHSurl) {
+  var xhrobj = $.ajax({
+          type: "GET",
+          url: WHSurl,
+          async: false });
+  //console.log(xhrobj.status);
+  //console.log(xhrobj.responseText);
+    if(xhrobj.status >= 200 && xhrobj.status < 300 || xhrobj.status === 304) {
+        whs = xhrobj.responseText
+        //console.log("getWHS sucess");
+        return whs;
+    } else { return false; }
+  }
+  </script>
+
 </body>
-
-
 </html>
