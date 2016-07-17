@@ -5,19 +5,6 @@
   var autosaveAfterSec = 300;   //time in seconds after auotsave happens
   var mytime;
 
-  //  // Check if a new appcache is available on page load. If so, ask to load it.
-  // window.addEventListener("load", function(e) {
-  //   window.applicationCache.addEventListener("updateready", function(e) {
-  //     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-  //       // Browser downloaded a new app cache.
-  //       if (confirm("A new version of this site is available. Load it?")) {
-  //         window.location.reload();
-  //       }
-  //     } else {
-  //       // Manifest didn't changed. Do NOTHING!
-  //     }
-  //   }, false);
-  // }, false);
 
   // Create Text Area panes
   // Init ACE Editor and set options;
@@ -122,7 +109,7 @@
 
   function get_short_url(long_url, func) {
     $.getJSON(
-      "https://api-ssl.bitly.com/v3/shorten?format=json&access_token=b26f3b0efc299fba1d3fccb18cfb44cd42b47f26&longURL=" + encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22"), 
+      "https://api-ssl.bitly.com/v3/shorten?format=json&access_token=b26f3b0efc299fba1d3fccb18cfb44cd42b47f26&longURL=" + encodeURIComponent(long_url).replace(/'/g,"%27").replace(/"/g,"%22"),
       {},
       function(response) {
         func(response.data.url);
@@ -380,7 +367,7 @@
     function getExampleURL(){
       //test it with : /playground/?example=points&mode=demo
       var splitURL = location.href.split("?");
-      
+
       var regex = /[?&]([^=#]+)=([^&#]*)/g,
         url = window.location.href,
         params = {},
@@ -402,11 +389,21 @@
     function LoadExample(requestURL){
       if (typeof requestURL == "string") {
         // here we will get file via ajax and load into editor
-        var response = $.ajax({
+        var response;
+        var xhrobj = $.ajax({
                 type: "GET",
                 url: requestURL,
-                async: false}).responseText;
-        //console.log(response);
+                async: false });
+        //console.log(xhrobj.status);
+        //console.log(xhrobj.responseText);
+            if(xhrobj.status >= 200 && xhrobj.status < 300 || xhrobj.status === 304) {
+                response = xhrobj.responseText
+                //console.log("xhr sucess");
+            }
+            else {
+                response = "";
+                alert(" invalid URL, Demo not found");
+            }
       } else if (requestURL[0] === "code") {
         var response = requestURL[1];
       } else {
