@@ -3,6 +3,6 @@ An client side Playground to play with Whitestorm.js right into your browser [WI
 
 #### Screenshots
 
-<a><img src="https://raw.githubusercontent.com/WhitestormJS/playground/tree/gh-pages/images/screen1.png"></a>
+<a><img src="https://github.com/WhitestormJS/playground/raw/gh-pages/images/screen1.png"></a>
 
 inspired and inherited from [CloudEdit](https://github.com/TheInsomniac/CloudEdit)
