@@ -25,7 +25,8 @@
   <link href="css/webfont.css" rel="stylesheet">
   <link href="css/core.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
-  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+  <!-- adding it locally because jsdelivr had a self signed cert -->
+  <script src="js/clipboard.min.js"></script>
   <script src="https://use.fontawesome.com/3dd85ecf06.js"></script>
 </head>
 
@@ -79,9 +80,9 @@
 
   <div id="share">
       <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-      
+
       <i class="fa fa-times fa-3x close-share" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-          
+
       <div class="modal-content share-section">
         <a href="#" id="clipboard"><div class="share-box">
           <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i>
