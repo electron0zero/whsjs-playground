@@ -427,13 +427,63 @@
 
     // Instance the tour
     var tour = new Tour({
+      storage: false,
       backdrop: true,
       steps: [
       {
+        element: "#editor",
+        title: "Editor",
+        content: "Write code, debug errors, learn"
+      },
+      {
+        element: "#preview",
+        title: "Preview",
+        content: "See results of your code",
+        placement: "left"
+      },
+      {
         element: "#clear",
-        title: "Clear all text",
-        content: "Content of my step"
-      }
+        title: "Clear all",
+        content: "Will reset all your code"
+      },
+      {
+        element: "#fullscreenToggle",
+        title: "Fullscreen mode",
+        content: "Toggles fullscreen mode for previewing in large window"
+      },
+      {
+        element: "#download",
+        title: "Download file",
+        content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
+      },
+      {
+        element: "#generate",
+        title: "Share code",
+        content: "You can share what you did in social networks or just copy to clipboard."
+      },
+      {
+        element: "#run",
+        title: "Run code",
+        content: "Executes code in right(preview) window and shows a result."
+      },
+      {
+        element: "#load",
+        title: "Load from localStorage",
+        content: "You can also load last code you've submitted to localStorage. To make it - press \"save\"",
+        placement: "left"
+      },
+      {
+        element: "#save",
+        title: "Save file",
+        content: "Submits code to localStorage.",
+        placement: "left"
+      },
+      {
+        element: "#autosaveToggle",
+        title: "Autosave mode",
+        content: "You can save all your latest changes automatically by using autosave mode.",
+        placement: "left"
+      },
     ]});
 
     // Initialize the tour

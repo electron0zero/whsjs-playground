@@ -127,7 +127,7 @@ section:after {
   background: #eaeaea;
   color: #777;
   border: 1px solid #cdcdcd;
-  border-radius: 3px;
+  border-radius: 4px !important;
   font-family: "Clear Sans";
   font-size: .75em;
   text-shadow: rgba(255,255,255,0.5) 0 1px 2px;
@@ -573,4 +573,14 @@ ul.share-buttons li a img {
 .btn-active:hover {
   background: #eaeaea;
   color: #777;
+}
+
+.popover-title {
+  text-shadow: 1px 1px 0 #ccc !important;
+  font-weight: bold !important;
+}
+
+.popver {
+  min-width: 320px !important;
+  max-width: 400px !important;
 }
