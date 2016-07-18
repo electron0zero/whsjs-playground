@@ -15,7 +15,6 @@
       aceTheme = localStorage.getItem("theme");
     } else {
       aceTheme = "ace/theme/twilight";
-
     }
 
     // JS Editor
@@ -206,7 +205,8 @@
   $([document, document.getElementById("iframe").contentWindow.document]).on('mouseup', () => {moveEnabled = false});
 
   function resize_init() {
-    $([window, document.getElementById("iframe").contentWindow]).on('mousemove', (e) => {
+    var kit = document.getElementById("iframe") ? [window, document.getElementById("iframe").contentWindow] : window;
+    $(kit).on('mousemove', (e) => {
       const divWidth = 5;
 
       if (moveEnabled) {
@@ -276,7 +276,8 @@
       var textToWrite = buildOutput();
 
       // Fix for const and let (redefine iframe).
-      document.getElementById("iframe").remove();
+      if(document.getElementById("iframe-fullscreen")) document.getElementById("iframe-fullscreen").remove();
+      if(document.getElementById("iframe")) document.getElementById("iframe").remove();
       var elem = document.createElement('iframe');
       elem.innerHTML = '<iframe id="iframe" name="preview" sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms" allowtransparency="true"></iframe>';
       elem.id ="iframe";
@@ -284,7 +285,6 @@
 
       (document.getElementById("iframe").contentWindow.document).open();
       (document.getElementById("iframe").contentWindow.document).clear();
-      (document.getElementById("iframe-fullscreen").contentWindow.document).write();
       (document.getElementById("iframe").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe").contentWindow.document).close();
       resize_init();
@@ -306,14 +306,14 @@
       var textToWrite = buildOutput();
 
       // Fix for const and let (redefine iframe).
-      document.getElementById("iframe-fullscreen").remove();
+      if(document.getElementById("iframe-fullscreen")) document.getElementById("iframe-fullscreen").remove();
+      if(document.getElementById("iframe")) document.getElementById("iframe").remove();
       var elem = document.createElement('iframe');
       elem.innerHTML = '<iframe id="iframe-fullscreen" name="preview" sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms" allowtransparency="true"></iframe>';
       elem.id ="iframe-fullscreen";
       document.querySelector("#fullscreen .modal-content").appendChild(elem);
 
       (document.getElementById("iframe-fullscreen").contentWindow.document).open();
-      (document.getElementById("iframe").contentWindow.document).write();
       (document.getElementById("iframe-fullscreen").contentWindow.document).clear();
       (document.getElementById("iframe-fullscreen").contentWindow.document).write(textToWrite);
       (document.getElementById("iframe-fullscreen").contentWindow.document).close();
@@ -419,10 +419,29 @@
       jsField.setValue(response);
       jsField.clearSelection();
       //runs the code that we inject into editorfcl
-      preview();
+      preview(1000);
     }
 
     window.addEventListener("load",LoadExample(getExampleURL()), false);
     //Load example from URL end
+
+    // Instance the tour
+    var tour = new Tour({
+      backdrop: true,
+      steps: [
+      {
+        element: "#clear",
+        title: "Clear all text",
+        content: "Content of my step"
+      }
+    ]});
+
+    // Initialize the tour
+    tour.init();
+
+    $('#tour').on('click', function () {
+      // Start the tour
+      tour.start();
+    })
 
 })();

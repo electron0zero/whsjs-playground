@@ -24,10 +24,11 @@
   <!-- WHS info end -->
   <link href="css/webfont.css" rel="stylesheet">
   <link href="css/core.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+  <link href="css/bootstrap-tour-standalone.min.css" rel="stylesheet">
   <!-- adding it locally because jsdelivr had a self signed cert -->
   <script src="js/clipboard.min.js"></script>
-  <script src="https://use.fontawesome.com/3dd85ecf06.js"></script>
 </head>
 
 <body>
@@ -36,6 +37,7 @@
       <div class="column-100 padding-up-down-10 center">
         <!-- Float: left -->
         <button class="btn" id="clear" title="Click to clear all panes"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
+        <button class="btn" id="tour">Tour</button>
 
         <!-- Float: center -->
         <a href="#fullscreen" class="btn" id="fullscreenToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Fullscreen</a>
@@ -121,6 +123,7 @@
   <script src="js/jquery.ui.position.js" type="text/javascript" charset="utf-8"></script>
   <!-- load ace language tools -->
   <script src="js/ace-min-noconflict/ext-language_tools.js"></script>
+  <script src="js/bootstrap-tour-standalone.min.js"></script>
   <script src="js/core.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/animatedModal.min.js"></script>
   <script>
