@@ -1,7 +1,5 @@
-'use strict';
-
-window.GAME = new WHS.World({
-  autoresize: true,
+const GAME = new WHS.World({
+  autoresize: "window",
 
   gravity: {
     x: 0,
@@ -24,13 +22,13 @@ window.GAME = new WHS.World({
   }
 });
 
-var data = new Float32Array(3993000);
-var colors = new Float32Array(3993000);
+const data = new Float32Array(3993000);
+const colors = new Float32Array(3993000);
 
-var i = 0;
-for (var x = 0; x <= 100; x++) {
-  for (var y = 0; y <= 100; y++) {
-    for (var z = 0; z <= 100; z++) {
+let i = 0;
+for (let x = 0; x <= 100; x++) {
+  for (let y = 0; y <= 100; y++) {
+    for (let z = 0; z <= 100; z++) {
       data[i * 3] = x;
       data[i * 3 + 1] = y;
       data[i * 3 + 2] = z;
@@ -42,20 +40,14 @@ for (var x = 0; x <= 100; x++) {
   }
 }
 
-var geom = new THREE.BufferGeometry();
+const geom = new THREE.BufferGeometry();
 
 geom.addAttribute('position', new THREE.BufferAttribute(data, 3));
 geom.addAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-window.points = new WHS.Points({
-  geometry: geom,
-
-  material: {
-    kind: 'points',
-    vertexColors: THREE.VertexColors,
-    size: 0.1
-  }
-});
+const points = new WHS.Shape(
+  new THREE.Points(geom, new THREE.PointsMaterial({vertexColors: THREE.VertexColors, size: 0.1}))
+);
 
 points.addTo(GAME);
 
@@ -63,3 +55,4 @@ GAME.setControls(WHS.orbitControls(new THREE.Vector3(50, 50, 50)));
 
 // Start rendering.
 GAME.start();
+

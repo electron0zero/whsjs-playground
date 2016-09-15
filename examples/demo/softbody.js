@@ -1,6 +1,4 @@
-'use strict';
-
-var GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: 'fps', // fps, ms, mb
   autoresize: true,
   softbody: true,

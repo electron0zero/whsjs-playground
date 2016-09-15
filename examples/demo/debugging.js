@@ -1,6 +1,4 @@
-'use strict';
-
-var GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: 'fps', // fps, ms, mb
   autoresize: true,
   background: {
@@ -31,7 +29,7 @@ var GAME = new WHS.World({
   }
 });
 
-var sphere = new WHS.Sphere({
+const sphere = new WHS.Sphere({
   geometry: {
     radius: 2
   },
@@ -65,7 +63,7 @@ sphere.then(function (obj) {
   sphere2.wrap('no-transforms');
   sphere2.addTo(GAME);
 
-  var sphere3 = sphere2.clone();
+  const sphere3 = sphere2.clone();
 
   sphere3.__params.helpers.faceNormals = false;
   sphere3.__params.helpers.edges = { color: 0x0000ff, size: 0.5 };
@@ -74,7 +72,7 @@ sphere.then(function (obj) {
   sphere3.wrap('no-transforms');
   sphere3.addTo(GAME);
 
-  var sphere4 = sphere3.clone();
+  const sphere4 = sphere3.clone();
 
   sphere4.__params.helpers.edges = false;
   sphere4.__params.helpers.vertexNormals = { color: 0x00ff00, size: 0.5 };

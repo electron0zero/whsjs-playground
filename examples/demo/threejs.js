@@ -1,6 +1,4 @@
-'use strict';
-
-window.GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: 'fps', // fps, ms, mb
   autoresize: true,
 
@@ -21,19 +19,19 @@ window.GAME = new WHS.World({
   }
 });
 
-var scene = new THREE.Scene();
+const scene = new THREE.Scene();
 
-var obj1 = new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+const obj1 = new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff }));
 obj1.position.set(6, 6, 0);
 
 scene.add(obj1);
 
-var obj2 = new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+const obj2 = new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff }));
 obj2.position.set(12, 6, 0);
 
 scene.add(obj2);
 
-var obj3 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshBasicMaterial({ color: 0x0000ff }));
+const obj3 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshBasicMaterial({ color: 0x0000ff }));
 obj3.position.set(0, 0, 3);
 
 // Nested object.
@@ -44,7 +42,7 @@ GAME._initCamera();
 GAME._initRenderer();
 GAME._initHelpers();
 
-var sphere = new WHS.Shape(new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff })));
+const sphere = new WHS.Shape(new THREE.Mesh(new THREE.SphereGeometry(3, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff })));
 
 sphere.addTo(GAME);
 sphere.position.y = 3;

@@ -1,6 +1,4 @@
-'use strict';
-
-var GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: 'fps', // fps, ms, mb
   autoresize: true,
 
@@ -52,7 +50,7 @@ new WHS.Sphere({
   }
 }).addTo(GAME);
 
-var tramplin = new WHS.Box({
+const tramplin = new WHS.Box({
   geometry: {
     height: 2,
     width: 20,
@@ -80,16 +78,16 @@ var tramplin = new WHS.Box({
 
 tramplin.addTo(GAME);
 
-var tramplin2 = tramplin.clone();
+const tramplin2 = tramplin.clone();
 tramplin2.position.y = 44;
 tramplin2.addTo(GAME);
 
-var tramplin3 = tramplin.clone();
+const tramplin3 = tramplin.clone();
 tramplin3.position.set(24, 24, 0);
 tramplin3.rotation.z = Math.PI / 6;
 tramplin3.addTo(GAME);
 
-var domino = new WHS.Box({
+const domino = new WHS.Box({
   geometry: {
     height: 8,
     width: 1,
@@ -112,8 +110,8 @@ var domino = new WHS.Box({
   }
 });
 
-var d = domino.clone();
-for (var i = 0; i < 4; i++) {
+let d = domino.clone();
+for (let i = 0; i < 4; i++) {
   d = d.clone();
   d.position.x += 8;
   d.addTo(GAME);

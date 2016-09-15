@@ -1,6 +1,4 @@
-'use strict';
-
-var GAME = new WHS.World({
+const GAME = new WHS.World({
   autoresize: true,
 
   gravity: {
@@ -54,7 +52,7 @@ new WHS.Box({
   }
 }).addTo(GAME);
 
-var egg = new WHS.Model({
+const egg = new WHS.Model({
   geometry: {
     path: 'assets/models/egg_light.json',
     physics: 'assets/models/egg_low.json'
@@ -86,7 +84,7 @@ var egg = new WHS.Model({
   }
 });
 
-var rabbit = new WHS.Model({
+const rabbit = new WHS.Model({
   geometry: {
     path: 'assets/models/rabbit3.json',
     physics: 'assets/models/rabbit3_low.json'
@@ -118,7 +116,7 @@ var rabbit = new WHS.Model({
   }
 });
 
-rabbit.addTo(GAME, 'wait');
+rabbit.addTo(GAME);
 
 new WHS.SpotLight({
   light: {
@@ -174,12 +172,13 @@ new WHS.AmbientLight({
 //     egg8 = void 0,
 //     egg9 = void 0;
 
-egg.addTo(GAME, 'wait').then(function (object) {
+egg.addTo(GAME).then(function (object) {
   egg2 = object.clone();
-  egg2.M_({ texture: 'assets/textures/easter/egg2.jpg' });
 
-  egg2.addTo(GAME, 'wait').then(function (obj) {
+  egg2.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg2.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(-8.5);
@@ -187,10 +186,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg3 = object.clone();
-  egg3.M_({ texture: 'assets/textures/easter/egg3.jpg' });
 
-  egg3.addTo(GAME, 'wait').then(function (obj) {
+  egg3.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg3.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(-8.5);
@@ -198,10 +198,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg4 = object.clone();
-  egg4.M_({ texture: 'assets/textures/easter/egg4.jpg' });
 
-  egg4.addTo(GAME, 'wait').then(function (obj) {
+  egg4.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg4.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(0);
@@ -209,10 +210,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg5 = object.clone();
-  egg5.M_({ texture: 'assets/textures/easter/egg1.jpg' });
 
-  egg5.addTo(GAME, 'wait').then(function (obj) {
+  egg5.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg1.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(2);
@@ -220,10 +222,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg6 = object.clone();
-  egg6.M_({ texture: 'assets/textures/easter/egg2.jpg' });
 
-  egg6.addTo(GAME, 'wait').then(function (obj) {
+  egg6.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg2.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(0.5);
@@ -231,10 +234,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg7 = object.clone();
-  egg7.M_({ texture: 'assets/textures/easter/egg3.jpg' });
 
-  egg7.addTo(GAME, 'wait').then(function (obj) {
+  egg7.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg3.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(2);
@@ -242,10 +246,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg8 = object.clone();
-  egg8.M_({ texture: 'assets/textures/easter/egg4.jpg' });
 
-  egg8.addTo(GAME, 'wait').then(function (obj) {
+  egg8.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg4.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(1);
@@ -253,10 +258,11 @@ egg.addTo(GAME, 'wait').then(function (object) {
   });
 
   egg9 = object.clone();
-  egg9.M_({ texture: 'assets/textures/easter/egg1.jpg' });
 
-  egg9.addTo(GAME, 'wait').then(function (obj) {
+  egg9.addTo(GAME).then(function (obj) {
     obj.wrap('no-transforms');
+    obj.getNative().material = obj.getNative().material.clone();
+    obj.getNative().material.map = WHS.texture('assets/textures/easter/egg1.jpg');
 
     obj.rotation.y = -Math.PI / 8;
     obj.position.setX(3);
