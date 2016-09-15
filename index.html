@@ -228,9 +228,27 @@
 
   <!-- load and cache whitestormjs in localStorage  -->
   <script>
+
+  //check support for localStorage/SessionStorage because we relay on it for stuff to work
+  //Stuff breaks when Storage support is not there
+  //also ask the user to get out of cave and use a modern browser if Storage support is not there
+  if (typeof(Storage) !== "undefined") {
+    // console.log("Storage support is present");
+    } else {
+    // console.log("No Storage support");
+    alert("Playground can not work because your Browser does't support Storage, Plese use another Browser");
+    }
+
   $(document).ready(function() {
+    var whs_version = "";
     //get or setVersion of whitestormjs lib and then fetch that
-    setVersion("11");
+    if (localStorage.getItem('whs_version')) {
+      whs_version = localStorage.getItem('whs_version');
+    } else {
+    // if user does't have a version slected use master as default version
+      whs_version = "master";
+    }
+    setVersion(whs_version);
     //Highlight the used version button
 
     //console.log("DOM ready!");
@@ -259,11 +277,10 @@
   }
   function setVersion(Version){
       //Manage Lib version by setting version number in localStorage
-      localStorage.setItem('whs-version', Version);
+      localStorage.removeItem('whs_version');
+      localStorage.setItem('whs_version', Version);
   }
-  function getVersion(){
-    return localStorage.getItem('whs-version');
-  }
+
   </script>
 <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
