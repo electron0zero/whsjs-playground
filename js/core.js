@@ -159,8 +159,10 @@
   // Clear editors with "Clear" button
   $("#clear").on("click", function() {
       //console.log("clear windows");
+    //clear js code pan  
     jsField.setValue("");
-    sessionStorage.clear();
+    // sessionStorage.clear();
+    // clear preview pan
     (document.getElementById("iframe").contentWindow.document).write("");
     (document.getElementById("iframe").contentWindow.document).close();
   });
