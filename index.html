@@ -357,14 +357,14 @@
     if (Version == "master") {
         console.log("fetch master");
         whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/master/build/whitestorm.js";
-        console.log(whs_url);
+        // console.log(whs_url);
     } else if (Version == "dev") {
         console.log("fetch dev");
         whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/dev/build/whitestorm.js";
-        console.log(whs_url);
+        // console.log(whs_url);
     } else {
         whs_url = "js/whs/whitestorm." + Version + ".js";
-        console.log(whs_url);
+        // console.log(whs_url);
     }
 
     var whs = getWHS(whs_url);
