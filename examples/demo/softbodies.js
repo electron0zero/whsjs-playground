@@ -1,28 +1,23 @@
-'use strict';
-
-window.GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: 'fps', // fps, ms, mb
   autoresize: true,
   softbody: true,
 
   gravity: {
     x: 0,
-    y: -9.8 * 100,
+    y: -9.8,
     z: 0
   },
 
   camera: {
     far: 10000,
-    y: 100,
-    z: 300
+    near: 0.01,
+    y: 6,
+    z: 18
   },
 
   shadowmap: {
     type: THREE.PCFSoftShadowMap
-  },
-
-  physics: {
-    fixedTimeStep: 1 / 120
   },
 
   background: {
@@ -30,34 +25,43 @@ window.GAME = new WHS.World({
   }
 });
 
-var sphere = new WHS.Sphere({ // Softbody.
+var sphere = new WHS.Icosahedron({ // Softbody.
   geometry: {
-    radius: 12,
-    widthSegments: 32,
-    heightSegments: 32
+    radius: 1,
+    detail: 2
   },
 
-  mass: 15000,
+  mass: 2,
   softbody: true,
 
   physics: {
-    pressure: 50000
+    pressure: 100,
+    damping: 0.01,
+    friction: 0.3,
+
+    klst: 0.6,
+    kast: 0.6,
+    margin: 0.05
   },
 
   material: {
     color: 0x000ff,
+    wireframe: true,
     kind: 'phong'
   },
 
   pos: {
-    y: 12
+    y: 5
   }
 });
 
+sphere.getNative().frustumCulled = false;
+
 sphere.addTo(GAME).then(function () {
-  for (var i = 0; i < 10; i++) {
-    var newSphere = sphere.clone();
-    newSphere.position.y = 50 * (i + 1);
+  for (var i = 0; i < 30; i++) {
+    let newSphere = sphere.clone();
+    newSphere.position.y = 4 * (i + 1);
+    newSphere.getNative().frustumCulled = false;
     newSphere.addTo(GAME);
   }
 });
@@ -65,7 +69,7 @@ sphere.addTo(GAME).then(function () {
 new WHS.Box({
   geometry: {
     width: 2500,
-    height: 1,
+    height: 4,
     depth: 2500
   },
 
@@ -78,7 +82,7 @@ new WHS.Box({
 
   pos: {
     x: 0,
-    y: 0,
+    y: -5,
     z: 0
   }
 }).addTo(GAME);

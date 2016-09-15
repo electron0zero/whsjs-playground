@@ -1,5 +1,3 @@
-'use strict';
-
 WHS.Shape.prototype.changeColor = function () {
   var object = this,
       color = new THREE.Color();

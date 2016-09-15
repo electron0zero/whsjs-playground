@@ -1,27 +1,20 @@
-'use strict';
+const radiusMin = 110, // Min radius of the asteroid belt.
+  radiusMax = 220, // Max radius of the asteroid belt.
+  particleCount = 400, // Ammount of asteroids.
+  particleMinRadius = 0.1, // Min of asteroid radius.
+  particleMaxRadius = 4, // Max of asteroid radius.
+  planetSize = 50; // Radius of planet.
 
-var radiusMin = 110,
-    // Min radius of the asteroid belt.
-radiusMax = 220,
-    // Max radius of the asteroid belt.
-particleCount = 400,
-    // Ammount of asteroids.
-particleMinRadius = 0.1,
-    // Min of asteroid radius.
-particleMaxRadius = 4,
-    // Max of asteroid radius.
-planetSize = 50; // Radius of planet.
-
-var colors = {
+const colors = {
   green: 0x8fc999,
   blue: 0x5fc4d0,
   orange: 0xee5624,
   yellow: 0xfaff70
 };
 
-var GAME = new WHS.World({
+const GAME = new WHS.World({
   stats: false,
-  autoresize: true,
+  autoresize: "window",
 
   gravity: {
     x: 0,
@@ -41,11 +34,11 @@ var GAME = new WHS.World({
   }
 });
 
-var space = new WHS.Group();
+window.space = new WHS.Group();
 space.addTo(GAME);
 space.rotation.z = Math.PI / 12;
 
-var planet = new WHS.Tetrahedron({
+const planet = new WHS.Tetrahedron({
   geometry: {
     radius: planetSize,
     detail: 2
@@ -97,7 +90,7 @@ new WHS.DirectionalLight({
   }
 }).addTo(GAME);
 
-var s1 = new WHS.Dodecahedron({
+const s1 = new WHS.Dodecahedron({
   geometry: {
     buffer: true,
     radius: 10
@@ -114,7 +107,7 @@ var s1 = new WHS.Dodecahedron({
   }
 });
 
-var s2 = new WHS.Box({
+const s2 = new WHS.Box({
   geometry: {
     buffer: true,
     width: 10,
@@ -133,7 +126,7 @@ var s2 = new WHS.Box({
   }
 });
 
-var s3 = new WHS.Cylinder({
+const s3 = new WHS.Cylinder({
   geometry: {
     buffer: true,
     radiusTop: 0,
@@ -152,7 +145,7 @@ var s3 = new WHS.Cylinder({
   }
 });
 
-var s4 = new WHS.Sphere({
+const s4 = new WHS.Sphere({
   geometry: {
     buffer: true,
     radius: 10
@@ -169,22 +162,27 @@ var s4 = new WHS.Sphere({
   }
 });
 
-var asteroids = new WHS.Group();
+const asteroids = new WHS.Group();
 asteroids.addTo(space);
 
 // Materials.
-var mat = [new THREE.MeshPhongMaterial({ color: colors.green, shading: THREE.FlatShading }), new THREE.MeshPhongMaterial({ color: colors.blue, shading: THREE.FlatShading }), new THREE.MeshPhongMaterial({ color: colors.orange, shading: THREE.FlatShading }), new THREE.MeshPhongMaterial({ color: colors.yellow, shading: THREE.FlatShading })];
+const mat = [
+  new THREE.MeshPhongMaterial({color: colors.green, shading: THREE.FlatShading}),
+  new THREE.MeshPhongMaterial({color: colors.blue, shading: THREE.FlatShading}),
+  new THREE.MeshPhongMaterial({color: colors.orange, shading: THREE.FlatShading}),
+  new THREE.MeshPhongMaterial({color: colors.yellow, shading: THREE.FlatShading})
+];
 
-for (var i = 0; i < particleCount; i++) {
-  var particle = [s1, s2, s3, s4][Math.ceil(Math.random() * 3)].clone(),
-      radius = particleMinRadius + Math.random() * (particleMaxRadius - particleMinRadius);
+for (let i = 0; i < particleCount; i++) {
+  const particle = [s1, s2, s3, s4][Math.ceil(Math.random() * 3)].clone(),
+    radius = particleMinRadius + Math.random() * (particleMaxRadius - particleMinRadius);
 
   particle.G_({
     radiusBottom: radius,
     height: particle instanceof WHS.Cylinder ? radius * 2 : radius,
     width: radius,
     depth: radius,
-    radius: radius
+    radius
   });
 
   particle.setMaterial(mat[Math.floor(4 * Math.random())]); // Set custom THREE.Material to mesh.
@@ -206,18 +204,18 @@ for (var i = 0; i < particleCount; i++) {
 }
 
 // Animating rotating shapes around planet.
-var particles = asteroids.children;
-var animation = new WHS.Loop(function () {
-  for (var _i = 0, max = particles.length; _i < max; _i++) {
-    var _particle = particles[_i];
+const particles = asteroids.children;
+const animation = new WHS.Loop(() => {
+  for (let i = 0, max = particles.length; i < max; i++) {
+    const particle = particles[i];
 
-    _particle.data.angle += 0.02 * _particle.data.distance / radiusMax;
+    particle.data.angle += 0.02 * particle.data.distance / radiusMax;
 
-    _particle.position.x = Math.cos(_particle.data.angle) * _particle.data.distance;
-    _particle.position.z = Math.sin(_particle.data.angle) * _particle.data.distance;
+    particle.position.x = Math.cos(particle.data.angle) * particle.data.distance;
+    particle.position.z = Math.sin(particle.data.angle) * particle.data.distance;
 
-    _particle.rotation.x += Math.PI / 60;
-    _particle.rotation.y += Math.PI / 60;
+    particle.rotation.x += Math.PI / 60;
+    particle.rotation.y += Math.PI / 60;
   }
 
   planet.rotation.y += 0.005;
