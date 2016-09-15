@@ -123,7 +123,8 @@
   <div id="examples">
     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
     <i class="fa fa-times fa-3x close-examples" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content" style="padding:80px">
+    <div class="modal-content center" style="padding:80px">
+        <h1 class="font-2rem padding-20">Examples</h1>
         <!-- examples from demo dir -->
         <a href="?example=debugging&dir=demo" id="demo"><div class="examples-box">
           <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
@@ -360,11 +361,11 @@
       localStorage.setItem('whs_version', Version);
     // clear cached lib and refetch lib
     if (Version == "master") {
-        console.log("fetch master");
+        // console.log("fetch master");
         whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/master/build/whitestorm.js";
         // console.log(whs_url);
     } else if (Version == "dev") {
-        console.log("fetch dev");
+        // console.log("fetch dev");
         whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/dev/build/whitestorm.js";
         // console.log(whs_url);
     } else {

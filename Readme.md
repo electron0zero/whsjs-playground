@@ -9,5 +9,13 @@
 
 <a><img src="https://github.com/WhitestormJS/playground/raw/gh-pages/images/screen1.png"></a>
 
+-----
+
+<a><img src="https://github.com/WhitestormJS/playground/raw/gh-pages/images/screen2.png"></a>
+
+----
+
+<a><img src="https://github.com/WhitestormJS/playground/raw/gh-pages/images/screen3.png"></a>
+
 --------------------------------------------------
 Inspired and Inherited from [CloudEdit](https://github.com/TheInsomniac/CloudEdit)
