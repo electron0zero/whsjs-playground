@@ -159,7 +159,7 @@
   // Clear editors with "Clear" button
   $("#clear").on("click", function() {
       //console.log("clear windows");
-    //clear js code pan  
+    //clear js code pan
     jsField.setValue("");
     // sessionStorage.clear();
     // clear preview pan
@@ -244,7 +244,7 @@
     html += '<style type="text/css">\n';
     //css for preview goes here
     html += '\n</style>\n';
-    
+
     html += '\n<script>\n';
     //include whitestormjs in page from sessionStorage.
     html += whs;
@@ -459,6 +459,11 @@
         content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
       },
       {
+        element: "#examples-btn",
+        title: "Examples",
+        content: "Explore examples to get an idea about whitestormjs"
+      },
+      {
         element: "#generate",
         title: "Share code",
         content: "You can share what you did in social networks or just copy to clipboard."
@@ -467,6 +472,12 @@
         element: "#run",
         title: "Run code",
         content: "Executes code in right(preview) window and shows a result."
+      },
+      {
+        element: "#settings-btn",
+        title: "Settings",
+        content: "You can see more settings relted to playground and editor",
+        placement: "left"
       },
       {
         element: "#load",
@@ -478,12 +489,6 @@
         element: "#save",
         title: "Save file",
         content: "Submits code to localStorage.",
-        placement: "left"
-      },
-      {
-        element: "#autosaveToggle",
-        title: "Autosave mode",
-        content: "You can save all your latest changes automatically by using autosave mode.",
         placement: "left"
       },
     ]});

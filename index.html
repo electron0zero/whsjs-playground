@@ -45,9 +45,9 @@
         <a class="btn" href="#examples" id="examples-btn" title="Browse Examples"><i class="fa fa-desktop" aria-hidden="true"></i> Examples</a>
         <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
         <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
+        <a href="#settings" class="btn" id="settings-btn" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></a>
 
         <!-- Float: right -->
-        <button class="btn" id="autosaveToggle" title="Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
         <button class="btn" id="save" title="Save to localStorage"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
         <button class="btn" id="load" title="Load from localStorage"><i class="fa fa-upload" aria-hidden="true"></i> Load</button>
       </div>
@@ -169,8 +169,29 @@
           <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
           <hr><h2>Threejs</h2>
         </div></a>
-
+    </div>
   </div>
+
+  <div id="settings">
+    <i class="fa fa-close fa-3x close-settings" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
+    <div class="modal-content center" style="padding: 80px;">
+
+    <h1 style="padding-bottom:10px;">Playground Settings</h1>
+
+    <!-- Version Choose buttons -->
+    <h1 class="font-2rem padding-20">Choose Library Version</h1>
+      <button class="btn" id="r10" title="Version r10 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10</button>
+      <button class="btn" id="r10_2" title="Version r10.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10.2</button>
+      <button class="btn" id="r11" title="Version r11 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11</button>
+      <button class="btn" id="r11_2" title="Version r11.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11.2</button>
+      <button class="btn" id="master" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version master</button>
+      <button class="btn" id="dev" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
+      <!-- other settings -->
+    <h1 class="font-2rem padding-20">Editor Settings</h1>
+    <button class="btn" id="autosaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
+    </div>
+  </div>
+
 
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
   <script src="js/jquery.min.js"></script>
@@ -201,18 +222,124 @@
   });
   </script>
 
+  <!-- examples modal js -->
+  <script>
+  $("#settings-btn").animatedModal({
+    modalTarget: "settings",
+    color: "#ffffff"
+  });
+  </script>
+
+
   <!-- load and cache whitestormjs in localStorage  -->
   <script>
-  $(document).ready(function() {
-    //console.log("DOM ready!");
-    var whs = getWHS("whitestorm.js");
-    if(whs){
-        sessionStorage.setItem('whs', whs);
+
+  //check support for localStorage/SessionStorage because we relay on it for stuff to work
+  //Stuff breaks when Storage support is not there
+  //also ask the user to get out of cave and use a modern browser if Storage support is not there
+  if (typeof(Storage) !== "undefined") {
+    // console.log("Storage support is present");
     } else {
-        alert("Can not load Core framework, please refresh page");
+    // console.log("No Storage support");
+    alert("Playground can not work because your Browser does't support Storage, Plese use another Browser");
     }
+
+  $(document).ready(function() {
+    var whs_version = "";
+    //get or setVersion of whitestormjs lib and then fetch that
+    if (localStorage.getItem('whs_version')) {
+      whs_version = localStorage.getItem('whs_version');
+    } else {
+    // if user does't have a version slected use master as default version
+      whs_version = "master";
+    }
+    //set and fetch the seleted version
+    setVersion(whs_version);
+
+    //Highlight the used version button
+    //button id should be same as whs_version so we can highlight button of seleted lib.
+    var active_button = "#" + whs_version;
+    // console.log(active_button);
+    // console.log(whs_version);
+    $(active_button).addClass("btn-active");
+
+    //handle button clicks
+    $("#r10").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r10_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10_2"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11_2"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#master").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "master"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#dev").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "dev"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+    //console.log("DOM ready!");
   });
 
+//  helper function for fething whitestormjs lib file via Ajax
+//  WHSurl is the url of Lib which we are fething
   function getWHS(WHSurl) {
   var xhrobj = $.ajax({
           type: "GET",
@@ -226,6 +353,33 @@
         return whs;
     } else { return false; }
   }
+  function setVersion(Version){
+      var whs_url = "";
+      //Manage Lib version by setting version number in localStorage
+      localStorage.removeItem('whs_version');
+      localStorage.setItem('whs_version', Version);
+    // clear cached lib and refetch lib
+    if (Version == "master") {
+        console.log("fetch master");
+        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/master/build/whitestorm.js";
+        // console.log(whs_url);
+    } else if (Version == "dev") {
+        console.log("fetch dev");
+        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/dev/build/whitestorm.js";
+        // console.log(whs_url);
+    } else {
+        whs_url = "js/whs/whitestorm." + Version + ".js";
+        // console.log(whs_url);
+    }
+
+    var whs = getWHS(whs_url);
+    if(whs){
+        sessionStorage.setItem('whs', whs);
+    } else {
+        alert("Can not load Core framework, please refresh page");
+    }
+  }
+
   </script>
 <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
