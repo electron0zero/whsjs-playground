@@ -248,8 +248,88 @@
     // if user does't have a version slected use master as default version
       whs_version = "master";
     }
+    //set and fetch the seleted version
     setVersion(whs_version);
+
     //Highlight the used version button
+    //button id should be same as whs_version so we can highlight button of seleted lib.
+    var active_button = "#" + whs_version;
+    console.log(active_button);
+    console.log(whs_version);
+    $(active_button).addClass("btn-active");
+
+    //handle button clicks
+    $("#r10").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r10_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10_2"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11_2"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#master").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "master"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#dev").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "dev"
+        setVersion(whs_version);
+        console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
 
     //console.log("DOM ready!");
     var whs = getWHS("whitestorm.js");
@@ -279,6 +359,7 @@
       //Manage Lib version by setting version number in localStorage
       localStorage.removeItem('whs_version');
       localStorage.setItem('whs_version', Version);
+    // clear cached lib and refetch lib
   }
 
   </script>
