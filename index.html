@@ -174,10 +174,17 @@
 
   <div id="settings">
     <i class="fa fa-close fa-3x close-settings" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content" style="padding: 80px;">
-      <h1>Hello</h1>
-    </div>
+    <div class="modal-content center" style="padding: 80px;">
 
+    <h1 style="padding : 20px">Choose Library Version</h1>
+    <!-- Version Choose buttons -->
+      <button class="btn" id="r10" title="Version r10 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10</button>
+      <button class="btn" id="r10_2" title="Version r10.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10.2</button>
+      <button class="btn" id="r11" title="Version r11 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11</button>
+      <button class="btn" id="r11_2" title="Version r11.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11.2</button>
+      <button class="btn" id="master" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version master</button>
+      <button class="btn" id="dev" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
+    </div>
   </div>
 
 
@@ -222,6 +229,10 @@
   <!-- load and cache whitestormjs in localStorage  -->
   <script>
   $(document).ready(function() {
+    //get or setVersion of whitestormjs lib and then fetch that
+    setVersion("11");
+    //Highlight the used version button
+
     //console.log("DOM ready!");
     var whs = getWHS("whitestorm.js");
     if(whs){
@@ -231,6 +242,8 @@
     }
   });
 
+//  helper function for fething whitestormjs lib file via Ajax
+//  WHSurl is the url of Lib which we are fething
   function getWHS(WHSurl) {
   var xhrobj = $.ajax({
           type: "GET",
@@ -243,6 +256,13 @@
         //console.log("getWHS sucess");
         return whs;
     } else { return false; }
+  }
+  function setVersion(Version){
+      //Manage Lib version by setting version number in localStorage
+      localStorage.setItem('whs-version', Version);
+  }
+  function getVersion(){
+    return localStorage.getItem('whs-version');
   }
   </script>
 <script>
