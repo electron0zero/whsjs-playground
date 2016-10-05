@@ -235,15 +235,16 @@
   <!-- load and cache whitestormjs in localStorage  -->
   <script>
 
-  //check support for localStorage/SessionStorage because we relay on it for stuff to work
-  //Stuff breaks when Storage support is not there
-  //also ask the user to get out of cave and use a modern browser if Storage support is not there
-  if (typeof(Storage) !== "undefined") {
-    // console.log("Storage support is present");
-    } else {
-    // console.log("No Storage support");
-    alert("Playground can not work because your Browser does't support Storage, Please use another Browser");
-    }
+  //check support for localStorage/SessionStorage
+  //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
+  var test_for_stroage = 'test';
+  try {
+      localStorage.setItem(test_for_stroage, test_for_stroage);
+      localStorage.removeItem(test_for_stroage);
+      // console.log("Storage support is present");
+  } catch(e) {
+      alert("Your browser does't support Storage, please use any other browser");
+  }
 
   $(document).ready(function() {
     var whs_version = "";
