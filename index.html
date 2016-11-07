@@ -42,7 +42,7 @@
         <!-- Float: center -->
         <a href="#fullscreen" class="btn" id="fullscreenToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Fullscreen</a>
         <button class="btn" id="download" title="Download to computer"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
-        <a class="btn" href="#examples" id="examples-btn" title="Browse Examples"><i class="fa fa-desktop" aria-hidden="true"></i> Examples</a>
+        <!--<a class="btn" href="#examples" id="examples-btn" title="Browse Examples"><i class="fa fa-desktop" aria-hidden="true"></i> Examples</a>-->
         <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
         <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
         <a href="#settings" class="btn" id="settings-btn" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></a>
@@ -253,7 +253,7 @@
       whs_version = localStorage.getItem('whs_version');
     } else {
     // if user does't have a version slected use master as default version
-      whs_version = "master";
+      whs_version = "dev";
     }
     //set and fetch the seleted version
     setVersion(whs_version);
