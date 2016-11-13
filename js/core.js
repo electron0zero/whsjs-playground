@@ -367,27 +367,27 @@
   };
 
     //Load example from URL Starts
-    // function getExampleURL(){
-    //   //test it with : /playground/?example=points&mode=demo
-    //   var splitURL = location.href.split("?");
+    function getExampleURL(){
+      //test it with : /playground/?example=points&mode=demo
+      var splitURL = location.href.split("?");
 
-    //   var regex = /[?&]([^=#]+)=([^&#]*)/g,
-    //     url = window.location.href,
-    //     params = {},
-    //     match;
-    //   while(match = regex.exec(url)) {
-    //     params[match[1]] = match[2];
-    //   }
+      var regex = /[?&]([^=#]+)=([^&#]*)/g,
+        url = window.location.href,
+        params = {},
+        match;
+      while(match = regex.exec(url)) {
+        params[match[1]] = match[2];
+      }
 
-    //   if (!params.code && params.example && params.dir) {
-    //     var url = splitURL[0] + "examples/" + params.dir + "/" + params.example + ".js";
-    //     return url;
-    //   } else if (params.code) {
-    //     return ["code", decodeURI(splitURL[1].substring(splitURL[1].indexOf("code=") + 5, splitURL[1].length))];
-    //   } else {
-    //     return false;
-    //   }
-    // };
+      if (!params.code && params.example && params.dir) {
+        var url = splitURL[0] + "examples/" + params.dir + "/" + params.example + ".js";
+        return url;
+      } else if (params.code) {
+        return ["code", decodeURI(splitURL[1].substring(splitURL[1].indexOf("code=") + 5, splitURL[1].length))];
+      } else {
+        return false;
+      }
+    };
 
     function LoadExample(requestURL){
       if (typeof requestURL == "string") {
