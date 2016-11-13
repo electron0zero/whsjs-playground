@@ -467,11 +467,6 @@
         content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
       },
       {
-        element: "#examples-btn",
-        title: "Examples",
-        content: "Explore examples to get an idea about whitestormjs"
-      },
-      {
         element: "#generate",
         title: "Share code",
         content: "You can share what you did in social networks or just copy to clipboard."
