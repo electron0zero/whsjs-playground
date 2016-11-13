@@ -370,6 +370,7 @@
     function getExampleURL(){
       //test it with : /playground/?example=points&mode=demo
       var splitURL = location.href.split("?");
+      var isURLHaveParams = false;
 
       var regex = /[?&]([^=#]+)=([^&#]*)/g,
         url = window.location.href,
@@ -377,6 +378,12 @@
         match;
       while(match = regex.exec(url)) {
         params[match[1]] = match[2];
+        isURLHaveParams = true;
+      }
+
+      if(!isURLHaveParams){
+          console.log("we don't have params, load hello world example");
+          return "https://raw.githubusercontent.com/WhitestormJS/playground/gh-pages/examples/demo/helloworld.js"
       }
 
       if (!params.code && params.example && params.dir) {
@@ -405,11 +412,12 @@
             }
             else {
                 response = "";
-                alert(" invalid URL, Demo not found");
+                alert(" invalid URL");
             }
       } else if (requestURL[0] === "code") {
         var response = requestURL[1];
       } else {
+    //load hello world example
         response = "";
       }
 
@@ -420,7 +428,7 @@
       //set text and remove selection off all all text
       jsField.setValue(response);
       jsField.clearSelection();
-      //runs the code that we inject into editorfcl
+      //runs the code that we inject into editor
       preview(1000);
     }
 
