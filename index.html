@@ -186,7 +186,7 @@
       <button class="btn" id="r11" title="Version r11 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11</button>
       <button class="btn" id="r11_2" title="Version r11.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11.2</button>
       <button class="btn" id="master" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version master</button>
-      <button class="btn" id="dev" title="Use lib from dev brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
+      <button class="btn" id="dev" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
       <!-- other settings -->
     <h1 class="font-2rem padding-20">Editor Settings</h1>
     <button class="btn" id="autosaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
@@ -252,7 +252,7 @@
     if (localStorage.getItem('whs_version')) {
       whs_version = localStorage.getItem('whs_version');
     } else {
-    // if user does't have a version slected use dev as default version
+    // if user does't have a version slected use master as default version
       whs_version = "dev";
     }
     //set and fetch the seleted version

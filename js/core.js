@@ -420,15 +420,12 @@
       //set text and remove selection off all all text
       jsField.setValue(response);
       jsField.clearSelection();
-      //runs the code that we inject into editor
+      //runs the code that we inject into editorfcl
       preview(1000);
     }
 
-    // window.addEventListener("load",LoadExample(getExampleURL()), false);
+    window.addEventListener("load",LoadExample(getExampleURL()), false);
     //Load example from URL end
-
-    //load helloworld World example on start
-    window.addEventListener("load",LoadExample(location.href + "/examples/demo/helloworld.js"), false);
 
     // Instance the tour
     var tour = new Tour({
@@ -461,11 +458,11 @@
         title: "Download file",
         content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
       },
-    //   {
-    //     element: "#examples-btn",
-    //     title: "Examples",
-    //     content: "Explore examples to get an idea about whitestormjs"
-    //   },
+      {
+        element: "#examples-btn",
+        title: "Examples",
+        content: "Explore examples to get an idea about whitestormjs"
+      },
       {
         element: "#generate",
         title: "Share code",
