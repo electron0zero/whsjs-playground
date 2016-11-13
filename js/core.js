@@ -382,7 +382,7 @@
       }
 
       if(!isURLHaveParams){
-          console.log("we don't have params, load hello world example");
+        //   console.log("we don't have params, load hello world example");
           return "https://raw.githubusercontent.com/WhitestormJS/playground/gh-pages/examples/demo/helloworld.js"
       }
 
