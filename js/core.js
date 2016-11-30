@@ -243,6 +243,16 @@
 
     html += '<style type="text/css">\n';
     //css for preview goes here
+    html +=  'html, body {\n';
+    html += 'position: relative;\n';
+    html += 'height: 100%;\n';
+    html += '}\n';
+
+    html += 'body {\n';
+    html += 'margin: 0;\n';
+    html += 'padding: 0;\n';
+    html += 'overflow: hidden;\n';
+    html += '}\n';
     html += '\n</style>\n';
 
     html += '\n<script>\n';
