@@ -1,6 +1,8 @@
 const world = new WHS.World({
   stats: "fps", // fps, ms, mb or false if not need.
-  autoresize: true,
+  autoresize: {
+    delay: 1
+  },
 
   gravity: { // Physic gravity.
       x: 0,
@@ -9,9 +11,7 @@ const world = new WHS.World({
   },
 
   camera: {
-    position: {
-      z: 50 // Move camera.
-    }
+    position: [10, 10, 10]
   },
 
   rendering: {
