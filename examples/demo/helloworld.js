@@ -58,7 +58,7 @@ const plane = new WHS.Plane({
 
   material: {
     color: 0x447F8B,
-    kind: 'basic'
+    kind: 'phong'
   },
 
   rotation: {
@@ -69,6 +69,10 @@ const plane = new WHS.Plane({
 new WHS.PointLight({
   light: {
     intensity: 0.5
+  },
+
+  shadowmap: {
+    fov: 90
   },
 
   position: {
