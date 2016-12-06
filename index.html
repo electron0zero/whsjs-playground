@@ -45,12 +45,14 @@
         <!--<a class="btn" href="#examples" id="examples-btn" title="Browse Examples"><i class="fa fa-desktop" aria-hidden="true"></i> Examples</a>-->
         <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
         <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
-        <a href="#settings" class="btn" id="settings-btn" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></a>
+        <!--<a href="#settings" class="btn" id="settings-btn" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
 
         <!-- Float: right -->
         <button class="btn" id="save" title="Save to localStorage"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
         <button class="btn" id="load" title="Load from localStorage"><i class="fa fa-upload" aria-hidden="true"></i> Load</button>
         <button class="btn" id="autosaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
+
+        <!--version selection dropdown-->
         <select class="btn" id="version_dropdown" name="select">
             <option value="value1">Value 1</option>
             <option value="value2" selected>Value 2</option>
@@ -126,80 +128,6 @@
 
   </div>
 
-  <div id="examples">
-    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-    <i class="fa fa-times fa-3x close-examples" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content center" style="padding:80px">
-        <h1 class="font-2rem padding-20">Examples</h1>
-        <!-- examples from demo dir -->
-        <a href="?example=debugging&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Debugging</h2>
-        </div></a>
-        <a href="?example=domino&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Domino</h2>
-        </div></a>
-        <a href="?example=easter&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Easter</h2>
-        </div></a>
-        <a href="?example=extending&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Extending</h2>
-        </div></a>
-        <a href="?example=helloworld&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Hello World</h2>
-        </div></a>
-        <a href="?example=model&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Model</h2>
-        </div></a>
-        <a href="?example=points&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Points</h2>
-        </div></a>
-        <a href="?example=saturn&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Saturn</h2>
-        </div></a>
-        <a href="?example=softbodies&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Soft Bodies</h2>
-        </div></a>
-        <a href="?example=softbody&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Soft Body</h2>
-        </div></a>
-        <a href="?example=threejs&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Threejs</h2>
-        </div></a>
-    </div>
-  </div>
-
-  <div id="settings">
-    <i class="fa fa-close fa-3x close-settings" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content center" style="padding: 80px;">
-
-    <h1 style="padding-bottom:10px;">Playground Settings</h1>
-
-    <!-- Version Choose buttons -->
-    <h1 class="font-2rem padding-20">Choose Library Version</h1>
-      <button class="btn" id="r10" title="Version r10 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10</button>
-      <button class="btn" id="r10_2" title="Version r10.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10.2</button>
-      <button class="btn" id="r11" title="Version r11 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11</button>
-      <button class="btn" id="r11_2" title="Version r11.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11.2</button>
-      <button class="btn" id="master" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version master</button>
-      <button class="btn" id="dev" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
-      <!-- other settings -->
-    <!--<h1 class="font-2rem padding-20">Editor Settings</h1>-->
-    <!--<button class="btn" id="autosaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>-->
-    </div>
-  </div>
-
-
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
   <script src="js/jquery.min.js"></script>
   <script src="js/ace-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -207,36 +135,9 @@
   <!-- load ace language tools -->
   <script src="js/ace-min-noconflict/ext-language_tools.js"></script>
   <script src="js/bootstrap-tour-standalone.min.js"></script>
-  <script src="js/core.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/animatedModal.min.js"></script>
-  <script>
-    $("#generate").animatedModal({
-      modalTarget: "share",
-      color: "#ffffff"
-    });
-
-    $("#fullscreenToggle").animatedModal({
-      modalTarget: "fullscreen",
-      color: "#ffffff"
-    });
-  </script>
-
-  <!-- examples modal js -->
-  <script>
-  $("#examples-btn").animatedModal({
-    modalTarget: "examples",
-    color: "#ffffff"
-  });
-  </script>
-
-  <!-- examples modal js -->
-  <script>
-  $("#settings-btn").animatedModal({
-    modalTarget: "settings",
-    color: "#ffffff"
-  });
-  </script>
-
+  <!--this should be included last-->
+  <script src="js/core.js" type="text/javascript" charset="utf-8"></script>
 
   <!--google analytics-->
 <script>

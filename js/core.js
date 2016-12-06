@@ -603,6 +603,30 @@
     }
   }
 
+// btn js
+    $("#generate").animatedModal({
+      modalTarget: "share",
+      color: "#ffffff"
+    });
+
+    $("#fullscreenToggle").animatedModal({
+      modalTarget: "fullscreen",
+      color: "#ffffff"
+    });
+
+  // examples modal js
+  $("#examples-btn").animatedModal({
+    modalTarget: "examples",
+    color: "#ffffff"
+  });
+
+  // examples modal js
+  $("#settings-btn").animatedModal({
+    modalTarget: "settings",
+    color: "#ffffff"
+  });
+
+
     // Instance the tour
     var tour = new Tour({
       storage: false,
