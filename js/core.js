@@ -55,6 +55,32 @@
   })();
   // END ACE Editor
 
+// Start cache
+      // load and cache whitestormjs in localStorage
+    //check support for localStorage/SessionStorage
+    //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
+  var test_for_stroage = 'test';
+  try {
+      localStorage.setItem(test_for_stroage, test_for_stroage);
+      localStorage.removeItem(test_for_stroage);
+      // console.log("Storage support is present");
+  } catch(e) {
+      alert("Your browser does't support Storage, please use any other browser");
+  }
+
+  $(document).ready(function() {
+    var whs_version = "";
+    //get or setVersion of whitestormjs lib and then fetch that
+    if (localStorage.getItem('whs_version')) {
+      whs_version = localStorage.getItem('whs_version');
+    } else {
+    // if user does't have a version slected use master as default version
+      whs_version = "dev";
+    }
+    //set and fetch the seleted version
+    setVersion(whs_version);
+//END cache
+
   //turn off warnings and errors
   //this code snippet is explained here [https://github.com/ajaxorg/ace/issues/895]
   //and here [https://github.com/ajaxorg/ace/issues/895#issuecomment-232725635]
@@ -370,9 +396,9 @@
     // If we haven't been passed the event get the window.event
     e = e || window.event;
     var message = "Your current session may be lost..";
-    // // For IE6-8 and Firefox prior to version 4
+    // For IE6-8 and Firefox prior to version 4
     if (e) e.returnValue = message;
-    // // For Chrome, Safari, IE8+ and Opera 12+
+    // For Chrome, Safari, IE8+ and Opera 12+
     return message;
   };
 
@@ -444,6 +470,138 @@
 
     window.addEventListener("load",LoadExample(getExampleURL()), false);
     //Load example from URL end
+
+    // version dropdown
+    $("#version_dropdown").change(function(){
+        console.log("version_dropdown changed");
+        console.log($("#version_dropdown option:selected").text())
+        });
+    console.log($("#version_dropdown option:selected").text())
+
+    //Highlight the used version button
+    //button id should be same as whs_version so we can highlight button of seleted lib.
+    var active_button = "#" + whs_version;
+    // console.log(active_button);
+    // console.log(whs_version);
+    $(active_button).addClass("btn-active");
+
+    //handle button clicks
+    $("#r10").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r10_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r10_2"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#r11_2").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "r11_2"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#master").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "master"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+
+    $("#dev").on("click", function() {
+        //clear active button
+        active_button = "#" + whs_version;
+        // console.log(active_button);
+        $(active_button).toggleClass("btn-active");
+        // set seleted version and fetch and cache new version
+        whs_version = "dev"
+        setVersion(whs_version);
+        // console.log(whs_version);
+        $(this).toggleClass("btn-active");
+    });
+    //console.log("DOM ready!");
+  });
+
+//  helper function for fething whitestormjs lib file via Ajax
+//  WHSurl is the url of Lib which we are fething
+  function getWHS(WHSurl) {
+  var whs
+  var xhrobj = $.ajax({
+          type: "GET",
+          url: WHSurl,
+          async: false });
+  //console.log(xhrobj.status);
+  //console.log(xhrobj.responseText);
+    if(xhrobj.status >= 200 && xhrobj.status < 300 || xhrobj.status === 304) {
+        whs = xhrobj.responseText
+        //console.log("getWHS sucess");
+        return whs;
+    } else { return false; }
+  }
+  function setVersion(Version){
+      var whs_url = "";
+      //Manage Lib version by setting version number in localStorage
+      localStorage.removeItem('whs_version');
+      localStorage.setItem('whs_version', Version);
+    // clear cached lib and refetch lib
+    if (Version == "master") {
+        // console.log("fetch master");
+        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/master/build/whitestorm.js";
+        // console.log(whs_url);
+    } else if (Version == "dev") {
+        // console.log("fetch dev");
+        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/dev/build/whitestorm.js";
+        // console.log(whs_url);
+    } else {
+        whs_url = "js/whs/whitestorm." + Version + ".js";
+        // console.log(whs_url);
+    }
+
+    var whs = getWHS(whs_url);
+    if(whs){
+        sessionStorage.setItem('whs', whs);
+    } else {
+        alert("Can not load Core framework, please refresh page");
+    }
+  }
 
     // Instance the tour
     var tour = new Tour({
