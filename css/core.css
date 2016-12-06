@@ -175,7 +175,7 @@ section:after {
   color: #777;
   opacity: 0.5;
 }
-#autosaveToggle:after {
+#autoSaveToggle:after {
   content: " \270D";
   position: relative;
   top: 0;
