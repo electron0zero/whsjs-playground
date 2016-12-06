@@ -1,3 +1,7 @@
+/**
+ * core/main js file for playground
+ */
+
 (function core() {
   "use strict";
   // Globals
@@ -56,7 +60,7 @@
   // END ACE Editor
 
 // Start cache
-      // load and cache whitestormjs in localStorage
+    // load and cache whitestormjs in localStorage
     //check support for localStorage/SessionStorage
     //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
   var test_for_stroage = 'test';
@@ -89,7 +93,7 @@
           if (!!session.$worker) {
               session.$worker.send("setOptions", [{
                 //if you have to silence more warnings/error just add there warning/error code here
-                  "-W117": false, // <sometthing> is not defined
+                  "-W117": false, // <something> is not defined
                   "-W104": false // Warning about es6
               }]);
             //console.log("worker is silenced");
