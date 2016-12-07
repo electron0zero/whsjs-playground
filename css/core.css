@@ -147,6 +147,18 @@ section:after {
     color: #444;
 }
 
+.dropdown {
+    padding: 0.10rem;
+    background: #444;
+    color: #FFFFFF;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px !important;
+    font-family: "Clear Sans";
+    font-size: .90em;
+    text-decoration: none;
+    outline: none;
+}
+
 #htmlToggle:after {
     content: " \2630";
     position: relative;
@@ -292,7 +304,6 @@ pre {
     border: 1px solid #cdcdcd;
     border-radius: 3px;
     position: relative;
-    appearance: none;
     -webkit-appearance: none;
     -webkit-box-shadow: inset rgba(0,0,0,.05) 0 3px 10px;
     box-shadow: inset rgba(0,0,0,.05) 0 3px 10px;
@@ -428,13 +439,13 @@ section {
     content: "" !important;
 }
 
-/*.btn:hover {
+.btn:hover {
     transition: background 0.5s ease-in-out;
     -webkit-transition: background 0.5s ease-in-out;
     -moz-transition: background 0.5s ease-in-out;
     -o-transition: background 0.5s ease-in-out;
     background: #4aafed !important;
-}*/
+}
 
 #jsLabel, #iframeLabel {
     color: white;
@@ -571,13 +582,11 @@ ul.share-buttons li a img {
 }
 
 .btn-active {
-    background: #c1ef65 !important;
-    color: black !important;
+    background: #4aaf00 !important;
 }
 
 .btn-active:hover {
     background: #eaeaea;
-    color: #777;
 }
 
 .popover-title {
