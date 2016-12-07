@@ -6,7 +6,7 @@
     "use strict";
     var autoSave = false;
     // time in seconds after auto Save happens
-    var autoSaveAfterSec = 300;
+    var autoSaveAfterSec = 30;
     // timer to keep track of autoSave time
     var autoSaveTimer;
 
@@ -90,6 +90,8 @@
         // if user doesn't have a version selected use dev as default version
         whs_version = "dev";
         }
+        // set whs_version to selected in dropdown
+        // $("#version_dropdown")
         setVersion(whs_version);
     });
     // END cache
@@ -432,11 +434,13 @@
     }
 
     // version dropdown
+    // on dropdown changed (when user)
     $("#version_dropdown").change(function(){
         console.log("version_dropdown changed");
-        console.log($("#version_dropdown option:selected").text())
-        });
-    console.log($("#version_dropdown option:selected").text())
+        var new_whs_version = $("#version_dropdown option:selected").val()
+        console.log(new_whs_version)
+        setVersion(new_whs_version)
+    });
 
     // helper function for fetching whitestormjs lib file via Ajax
     // WHSurl is the url of lib file which we are fetching
@@ -497,69 +501,75 @@
 
     // Instance the tour
     var tour = new Tour({
-      storage: false,
-      backdrop: true,
-      steps: [
-      {
-        element: "#editor",
-        title: "Editor",
-        content: "Write code, debug errors, learn"
-      },
-      {
-        element: "#preview",
-        title: "Preview",
-        content: "See results of your code",
-        placement: "left"
-      },
-      {
-        element: "#clear",
-        title: "Clear all",
-        content: "Will reset all your code"
-      },
-      {
-        element: "#fullscreenToggle",
-        title: "Fullscreen mode",
-        content: "Toggles fullscreen mode for previewing in large window"
-      },
-      {
-        element: "#download",
-        title: "Download file",
-        content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
-      },
-      {
-        element: "#generate",
-        title: "Share code",
-        content: "You can share what you did in social networks or just copy link to it to clipboard."
-      },
-      {
-        element: "#run",
-        title: "Run code",
-        content: "Executes code in right(preview) window and shows a result."
-      },
-      {
-        element: "#settings-btn",
-        title: "Settings",
-        content: "You can see more settings relted to playground and editor",
-        placement: "left"
-      },
-      {
-        element: "#load",
-        title: "Load from localStorage",
-        content: "You can also load last code you've submitted to localStorage. To make it - press \"save\"",
-        placement: "left"
-      },
-      {
-        element: "#save",
-        title: "Save file",
-        content: "Submits code to localStorage.",
-        placement: "left"
-      },
+        storage: false,
+        backdrop: true,
+        steps: [
+        {
+            element: "#editor",
+            title: "Editor",
+            content: "Write code, debug errors, learn"
+        },
+        {
+            element: "#preview",
+            title: "Preview",
+            content: "See results of your code",
+            placement: "left"
+        },
+        {
+            element: "#clear",
+            title: "Clear all",
+            content: "Will reset all your code"
+        },
+        {
+            element: "#fullscreenToggle",
+            title: "Fullscreen mode",
+            content: "Toggles fullscreen mode for previewing in large window"
+        },
+        {
+            element: "#download",
+            title: "Download file",
+            content: "Downloads file generated from your script. This file will contain html code and whitestormjs included."
+        },
+        {
+            element: "#generate",
+            title: "Share code",
+            content: "You can share what you did in social networks or just copy link to it to clipboard."
+        },
+        {
+            element: "#run",
+            title: "Run code",
+            content: "Executes code in right(preview) window and shows a result."
+        },
+        {
+            element: "#version_dropdown",
+            title: "Version selector",
+            content: "You can choose framework version to run your code",
+            placement: "left"
+        },
+        {
+            element: "#load",
+            title: "Load from localStorage",
+            content: "You can also load last code you've submitted to localStorage. To make it - press \"save\"",
+            placement: "left"
+        },
+        {
+            element: "#save",
+            title: "Save file",
+            content: "Submits code to localStorage.",
+            placement: "left"
+        },
+        {
+            element: "#autoSaveToggle",
+            title: "Auto Save Button",
+            content: "You can enable autoSave, if enabled this will save your code to localStorage after every 30 seconds",
+            placement: "left"
+        },
     ]});
     // Initialize the tour
     tour.init();
     $('#tour').on('click', function () {
-      // Start the tour
-      tour.start();
+        // Start the tour
+        tour.start();
     })
 
     // detect if a user leaving page and display a message
