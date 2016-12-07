@@ -91,22 +91,8 @@
         whs_version = "dev";
         }
         setVersion(whs_version);
-        // console.log("DOM ready!");
-
-        // animatedModal js for share modal
-        $("#generate").animatedModal({
-          modalTarget: "share",
-          color: "#ffffff"
-        });
-
-        // animatedModal js for fullscreen modal
-        $("#fullscreenToggle").animatedModal({
-          modalTarget: "fullscreen",
-          color: "#ffffff"
-        });
-
     });
-    //END cache
+    // END cache
 
     // button click handlers
     $("#fullscreenToggle").on("click", function() {
@@ -499,17 +485,17 @@
         }
     }
 
-    // // animatedModal js for share modal
-    // $("#generate").animatedModal({
-    //   modalTarget: "generate",
-    //   color: "#ffffff"
-    // });
+        // animatedModal js for share modal
+        $("#generate").animatedModal({
+          modalTarget: "share",
+          color: "#ffffff"
+        });
 
-    // // animatedModal js for fullscreen modal
-    // $("#fullscreenToggle").animatedModal({
-    //   modalTarget: "fullscreen",
-    //   color: "#ffffff"
-    // });
+        // animatedModal js for fullscreen modal
+        $("#fullscreenToggle").animatedModal({
+          modalTarget: "fullscreen",
+          color: "#ffffff"
+        });
 
 
     // Instance the tour
