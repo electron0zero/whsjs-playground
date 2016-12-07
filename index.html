@@ -1,397 +1,156 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
-  <title>Whitestorm.js Playground</title>
-  <!-- WHS info Start  -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="WhitestormJS is a 3D Javascript engine based on Three.js (http://threejs.org/). It uses physics and effects libraries to define WhitestormJS API that contains useful scripts for terrain generation, skybox, animation, physics simulation and post-effects. WhitestormJS simplifies Three.js object crafting algorithm to javascript methods with parameters." />
-  <meta name="keywords" content="three.js,cannon.js,webgl,wagner,WHS.API,3d,web,javascript" />
-  <meta name="author" content="Alexander Buzin">
-  <meta property="og:title" content="WhitestormJS 3D Engine" />
-  <meta property="og:site_name" content="WhitestormJS 3D Engine" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_US">
-  <meta property="og:url" content="http://www.jsdelivr.com/projects/whitestormjs" />
-  <meta property="og:description" content="WhitestormJS is a 3D Javascript engine based on Three.js (http://threejs.org/). It uses physics and effects libraries to define WhitestormJS API that contains useful scripts for terrain generation, skybox, animation, physics simulation and post-effects. WhitestormJS simplifies Three.js object crafting algorithm to javascript methods with parameters." />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@whitestormjs" />
-  <meta name="twitter:title" content="whitestormjs" />
-  <meta name="twitter:description" content="WhitestormJS 3D Engine" />
-  <link rel="shortcut icon" type="image/x-icon" href="http://whitestormjs.xyz/favicon.ico" />
-  <link rel="apple-touch-icon-precomposed" href="http://whitestormjs.xyz/favicon.ico" sizes="57x57" />
-  <meta name="msapplication-square150x150logo" content="../development/art/logo/Icon-72@2.png" />
-  <!-- WHS info end -->
-  <link href="css/webfont.css" rel="stylesheet">
-  <link href="css/core.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
-  <link href="css/bootstrap-tour-standalone.min.css" rel="stylesheet">
-  <!-- adding it locally because jsdelivr had a self signed cert -->
-  <script src="js/clipboard.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <title>Whitestorm.js Playground</title>
+    <!-- WHS info Start  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="WhitestormJS is a 3D Javascript engine based on Three.js (http://threejs.org/). It uses physics and effects libraries to define WhitestormJS API that contains useful scripts for terrain generation, skybox, animation, physics simulation and post-effects. WhitestormJS simplifies Three.js object crafting algorithm to javascript methods with parameters." />
+    <meta name="keywords" content="three.js,cannon.js,webgl,wagner,WHS.API,3d,web,javascript" />
+    <meta name="author" content="Alexander Buzin">
+    <meta property="og:title" content="WhitestormJS 3D Engine" />
+    <meta property="og:site_name" content="WhitestormJS 3D Engine" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="http://www.jsdelivr.com/projects/whitestormjs" />
+    <meta property="og:description" content="WhitestormJS is a 3D Javascript engine based on Three.js (http://threejs.org/). It uses physics and effects libraries to define WhitestormJS API that contains useful scripts for terrain generation, skybox, animation, physics simulation and post-effects. WhitestormJS simplifies Three.js object crafting algorithm to javascript methods with parameters." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@whitestormjs" />
+    <meta name="twitter:title" content="whitestormjs" />
+    <meta name="twitter:description" content="WhitestormJS 3D Engine" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://http://whsjs.io/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="http://whsjs.io/favicon.ico" sizes="57x57" />
+    <meta name="msapplication-square150x150logo" content="../development/art/logo/Icon-72@2.png" />
+    <!-- WHS info end -->
+    <link href="css/webfont.css" rel="stylesheet">
+    <link href="css/core.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/bootstrap-tour-standalone.min.css" rel="stylesheet">
+    <!-- adding it locally because jsdelivr had a self signed cert -->
+    <script src="js/clipboard.min.js"></script>
 </head>
 
 <body>
-  <section>
-      <!-- Buttions div -->
-      <div class="column-100 padding-up-down-10 center">
-        <!-- Float: left -->
-        <button class="btn" id="clear" title="Click to clear all panes"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
-        <button class="btn" id="tour"><i class="fa fa-compass" aria-hidden="true"></i>Tour</button>
+    <section>
+        <!-- Buttions div -->
+        <div class="column-100 padding-up-down-10 center">
+            <!-- Float: left -->
+            <button class="btn" id="clear" title="Click to clear all panes"><i class="fa fa-trash-o" aria-hidden="true"></i>Clear</button>
+            <button class="btn" id="tour"><i class="fa fa-compass" aria-hidden="true"></i>Tour</button>
 
-        <!-- Float: center -->
-        <a href="#fullscreen" class="btn" id="fullscreenToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Fullscreen</a>
-        <button class="btn" id="download" title="Download to computer"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
-        <!--<a class="btn" href="#examples" id="examples-btn" title="Browse Examples"><i class="fa fa-desktop" aria-hidden="true"></i> Examples</a>-->
-        <a class="btn" href="#share" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
-        <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
-        <a href="#settings" class="btn" id="settings-btn" title="Settings"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            <!-- Float: center -->
+            <a href="#fullscreen" class="btn" id="fullscreenToggle" title="Enlarge Preview"><i class="fa fa-arrows-alt" aria-hidden="true"></i>Fullscreen</a>
+            <button class="btn" id="download" title="Download to computer"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+            <a href="#share" class="btn" id="generate" title="generate url"><i class="fa fa-share-alt-square" aria-hidden="true"></i> Share</a>
+            <button class="btn" id="run" title="Run"><i class="fa fa-play" aria-hidden="true"></i> Run</button>
 
-        <!-- Float: right -->
-        <button class="btn" id="save" title="Save to localStorage"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
-        <button class="btn" id="load" title="Load from localStorage"><i class="fa fa-upload" aria-hidden="true"></i> Load</button>
-      </div>
-    <!-- <div id="window-container" > -->
+            <!-- Float: right -->
+            <button class="btn" id="autoSaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
+            <button class="btn" id="save" title="Save to localStorage"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+            <button class="btn" id="load" title="Load from localStorage"><i class="fa fa-upload" aria-hidden="true"></i> Load</button>
+
+            <!--version selection dropdown-->
+            <!--value of option is used to build url for file so make sure it matches filename sturcture-->
+            <select class="dropdown" id="version_dropdown" name="select">
+                <!--versions from github repo-->
+                <option value="dev">development</option>
+                <option value="master">master</option>
+                <!--version 1.2.0-->
+                <option value="v1_2_0">v1.2.0</option>
+                <option value="v1_2_0-light">v1.2.0-light</option>
+                <!--version 1.1.0-->
+                <option value="v1_1_0">v1.1.0</option>
+                <option value="v1_1_0-light">v1.1.0-light</option>
+                <!--version 1.0.0-->
+                <option value="v1_0_0">v1.0.0</option>
+                <option value="v1_0_0-light">v1.0.0-light</option>
+                <!--dev versions-->
+                <option value="r11_2">r11.2</option>
+                <option value="r11">r11</option>
+                <option value="r10_2">r10.2</option>
+                <option value="r10">r10</option>
+            </select>
+        </div>
+        <!-- <div id="window-container" > -->
         <!-- js code editer div -->
         <div id="editor" class="window column-50" style="float:left;">
             <pre id="js" ></pre>
             <span class="windowLabel" id="jsLabel" style="margin-right:15px">JavaScript</span>
         </div>
         <!-- vertical split line -->
-        <div id="divider"></div>
+        <div id="divider">
+        </div>
         <!-- code preview div -->
         <div id="preview" class="preview" style="float:right">
-          <iframe id="iframe" name="preview"
-            sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms"
-            allowtransparency="true">
-          </iframe>
-        <span class="windowLabel" id="iframeLabel">Preview</span>
-        <span id="iframeClose">close</span>
+            <iframe id="iframe" name="preview"
+                sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms"
+                allowtransparency="true"></iframe>
+            <span class="windowLabel" id="iframeLabel">Preview</span>
+            <span id="iframeClose">close</span>
         </div>
-    <!-- </div> -->
-  </section>
+    </section>
 
-  <div class="gradient">
-    <ul class="share-buttons">
-      <li><iframe src="http://c.yvoschaap.com/producthunt/counter.html#href=http%3A%2F%2Fwww.producthunt.com%2Fr%2Ff8325c2f656e68%2F76158&layout=wide" width="100" height="22" scrolling="no" frameborder="0" allowtransparency="true"></iframe></li>
-      <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Facebook.png"></a></li>
-      <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&text=:%20http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&via=whitestormjs" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Twitter.png"></a></li>
-      <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Google+.png"></a></li>
-      <li><a href="http://www.reddit.com/submit?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=" target="_blank" title="Submit to Reddit" onclick="window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Reddit.png"></a></li>
-      <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=&summary=&source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/LinkedIn.png"></a></li>
-      <li><a href="http://wordpress.com/press-this.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=&s=" target="_blank" title="Publish on WordPress" onclick="window.open('http://wordpress.com/press-this.php?u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Wordpress.png"></a></li>
-      <li><a href="https://github.com/WhitestormJS/playground/issues" target="_blank" title="Report an Issue" onclick="window.open("https://github.com/WhitestormJS/playground/issues"); return false;"><img style="width: 20px; height: 20px;" src="images/simple_icons/issue.png"></a></li>
-      <li><a href="https://github.com/WhitestormJS/playground" style="color: white;" target="_blank" title="View Source on Github" onclick="window.open("https://github.com/WhitestormJS/playground"); return false;"><svg style="fill: white; width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/></svg></li>
-    </ul>
-  </div>
-
-  <div id="share">
-      <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-
-      <i class="fa fa-times fa-3x close-share" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-
-      <div class="modal-content share-section">
-        <a href="#" id="clipboard"><div class="share-box">
-          <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i>
-          <hr>
-          <h2>Copy to clipboard</h2>
-        </div></a>
-        <a href="#" id="twitter"><div class="share-box">
-          <i class="fa fa-twitter fa-5x" aria-hidden="true"></i>
-          <hr>
-          <h2>Tweet!</h2>
-        </div></a>
-        <a href="#" id="facebook"><div class="share-box">
-          <i class="fa fa-facebook fa-5x" aria-hidden="true"></i>
-          <hr>
-          <h2>Share with Facebook!</h2>
-        </div></a>
-      </div>
-  </div>
-
-  <div id="fullscreen">
-    <div class="modal-content">
-      <iframe id="iframe-fullscreen" name="preview"
-        sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms"
-        allowtransparency="true">
-      </iframe>
+    <div class="gradient">
+        <ul class="share-buttons">
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Facebook.png"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&text=:%20http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&via=whitestormjs" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Twitter.png"></a></li>
+            <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img src="images/simple_icons/Google+.png"></a></li>
+            <li><a href="http://www.reddit.com/submit?url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=" target="_blank" title="Submit to Reddit" onclick="window.open('http://www.reddit.com/submit?url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Reddit.png"></a></li>
+            <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&title=&summary=&source=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/LinkedIn.png"></a></li>
+            <li><a href="http://wordpress.com/press-this.php?u=http%3A%2F%2Fwhitestormjs.xyz%2Fplayground%2F&t=&s=" target="_blank" title="Publish on WordPress" onclick="window.open('http://wordpress.com/press-this.php?u=' + encodeURIComponent(document.URL) + '&t=' +  encodeURIComponent(document.title)); return false;"><img src="images/simple_icons/Wordpress.png"></a></li>
+            <li><a href="https://github.com/WhitestormJS/playground/issues" target="_blank" title="Report an Issue" onclick="window.open("https://github.com/WhitestormJS/playground/issues"); return false;"><img style="width: 20px; height: 20px;" src="images/simple_icons/issue.png"></a></li>
+            <li><a href="https://github.com/WhitestormJS/playground" style="color: white;" target="_blank" title="View Source on Github" onclick="window.open("https://github.com/WhitestormJS/playground"); return false;"><svg style="fill: white; width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/></svg></li>
+        </ul>
     </div>
-    <i class="fa fa-close fa-3x close-fullscreen close-fullscreen-btn" aria-hidden="true"></i>
 
-  </div>
-
-  <div id="examples">
-    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-    <i class="fa fa-times fa-3x close-examples" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content center" style="padding:80px">
-        <h1 class="font-2rem padding-20">Examples</h1>
-        <!-- examples from demo dir -->
-        <a href="?example=debugging&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Debugging</h2>
-        </div></a>
-        <a href="?example=domino&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Domino</h2>
-        </div></a>
-        <a href="?example=easter&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Easter</h2>
-        </div></a>
-        <a href="?example=extending&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Extending</h2>
-        </div></a>
-        <a href="?example=helloworld&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Hello World</h2>
-        </div></a>
-        <a href="?example=model&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Model</h2>
-        </div></a>
-        <a href="?example=points&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Points</h2>
-        </div></a>
-        <a href="?example=saturn&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Saturn</h2>
-        </div></a>
-        <a href="?example=softbodies&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Soft Bodies</h2>
-        </div></a>
-        <a href="?example=softbody&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Soft Body</h2>
-        </div></a>
-        <a href="?example=threejs&dir=demo" id="demo"><div class="examples-box">
-          <i class="fa fa-desktop fa-4x" aria-hidden="true"></i>
-          <hr><h2>Threejs</h2>
-        </div></a>
+    <div id="share">
+        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+        <div class="modal-content share-section">
+            <a href="#" id="clipboard"><div class="share-box">
+                <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i>
+                <hr>
+                <h2>Copy to clipboard</h2></div></a>
+            <a href="#" id="twitter"><div class="share-box">
+                <i class="fa fa-twitter fa-5x" aria-hidden="true"></i>
+                <hr>
+                <h2>Tweet!</h2></div></a>
+            <a href="#" id="facebook"><div class="share-box">
+                <i class="fa fa-facebook fa-5x" aria-hidden="true"></i>
+                <hr>
+                <h2>Share with Facebook!</h2></div></a>
+        </div>
+        <i class="fa fa-times fa-3x close-share" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
     </div>
-  </div>
 
-  <div id="settings">
-    <i class="fa fa-close fa-3x close-settings" aria-hidden="true" style="color: #000; padding: 20px; cursor: pointer; position: fixed; top: 0; left:0;"></i>
-    <div class="modal-content center" style="padding: 80px;">
-
-    <h1 style="padding-bottom:10px;">Playground Settings</h1>
-
-    <!-- Version Choose buttons -->
-    <h1 class="font-2rem padding-20">Choose Library Version</h1>
-      <button class="btn" id="r10" title="Version r10 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10</button>
-      <button class="btn" id="r10_2" title="Version r10.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r10.2</button>
-      <button class="btn" id="r11" title="Version r11 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11</button>
-      <button class="btn" id="r11_2" title="Version r11.2 of lib"><i class="fa fa-book" aria-hidden="true"></i>Version r11.2</button>
-      <button class="btn" id="master" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version master</button>
-      <button class="btn" id="dev" title="Use lib from master brach of GitHub repo"><i class="fa fa-book" aria-hidden="true"></i>Version dev</button>
-      <!-- other settings -->
-    <h1 class="font-2rem padding-20">Editor Settings</h1>
-    <button class="btn" id="autosaveToggle" title="Toggle Auto Save"><i class="fa fa-magic" aria-hidden="true"></i>Auto Save</button>
+    <div id="fullscreen">
+        <i class="fa fa-close fa-3x close-fullscreen close-fullscreen-btn" aria-hidden="true"></i>
+        <div class="modal-content">
+            <iframe id="iframe-fullscreen" name="preview"
+                sandbox="allow-scripts allow-modals allow-pointer-lock allow-same-origin allow-popups allow-forms"
+                allowtransparency="true"></iframe>
+        </div>
     </div>
-  </div>
 
+    <!--js libs-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/ace-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.ui.position.js" type="text/javascript" charset="utf-8"></script>
+    <!-- load ace language tools -->
+    <script src="js/ace-min-noconflict/ext-language_tools.js"></script>
+    <script src="js/bootstrap-tour-standalone.min.js"></script>
+    <script src="js/animatedModal.min.js"></script>
+    <!--this should be included last-->
+    <script src="js/core.js" type="text/javascript" charset="utf-8"></script>
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/ace-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/jquery.ui.position.js" type="text/javascript" charset="utf-8"></script>
-  <!-- load ace language tools -->
-  <script src="js/ace-min-noconflict/ext-language_tools.js"></script>
-  <script src="js/bootstrap-tour-standalone.min.js"></script>
-  <script src="js/core.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/animatedModal.min.js"></script>
-  <script>
-    $("#generate").animatedModal({
-      modalTarget: "share",
-      color: "#ffffff"
-    });
+    <!--google analytics-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    $("#fullscreenToggle").animatedModal({
-      modalTarget: "fullscreen",
-      color: "#ffffff"
-    });
-  </script>
-
-  <!-- examples modal js -->
-  <script>
-  $("#examples-btn").animatedModal({
-    modalTarget: "examples",
-    color: "#ffffff"
-  });
-  </script>
-
-  <!-- examples modal js -->
-  <script>
-  $("#settings-btn").animatedModal({
-    modalTarget: "settings",
-    color: "#ffffff"
-  });
-  </script>
-
-
-  <!-- load and cache whitestormjs in localStorage  -->
-  <script>
-
-  //check support for localStorage/SessionStorage
-  //https://stackoverflow.com/questions/11214404/how-to-detect-if-browser-supports-html5-local-storage
-  var test_for_stroage = 'test';
-  try {
-      localStorage.setItem(test_for_stroage, test_for_stroage);
-      localStorage.removeItem(test_for_stroage);
-      // console.log("Storage support is present");
-  } catch(e) {
-      alert("Your browser does't support Storage, please use any other browser");
-  }
-
-  $(document).ready(function() {
-    var whs_version = "";
-    //get or setVersion of whitestormjs lib and then fetch that
-    if (localStorage.getItem('whs_version')) {
-      whs_version = localStorage.getItem('whs_version');
-    } else {
-    // if user does't have a version slected use master as default version
-      whs_version = "dev";
-    }
-    //set and fetch the seleted version
-    setVersion(whs_version);
-
-    //Highlight the used version button
-    //button id should be same as whs_version so we can highlight button of seleted lib.
-    var active_button = "#" + whs_version;
-    // console.log(active_button);
-    // console.log(whs_version);
-    $(active_button).addClass("btn-active");
-
-    //handle button clicks
-    $("#r10").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "r10"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-
-    $("#r10_2").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "r10_2"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-
-    $("#r11").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "r11"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-
-    $("#r11_2").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "r11_2"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-
-    $("#master").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "master"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-
-    $("#dev").on("click", function() {
-        //clear active button
-        active_button = "#" + whs_version;
-        // console.log(active_button);
-        $(active_button).toggleClass("btn-active");
-        // set seleted version and fetch and cache new version
-        whs_version = "dev"
-        setVersion(whs_version);
-        // console.log(whs_version);
-        $(this).toggleClass("btn-active");
-    });
-    //console.log("DOM ready!");
-  });
-
-//  helper function for fething whitestormjs lib file via Ajax
-//  WHSurl is the url of Lib which we are fething
-  function getWHS(WHSurl) {
-  var xhrobj = $.ajax({
-          type: "GET",
-          url: WHSurl,
-          async: false });
-  //console.log(xhrobj.status);
-  //console.log(xhrobj.responseText);
-    if(xhrobj.status >= 200 && xhrobj.status < 300 || xhrobj.status === 304) {
-        whs = xhrobj.responseText
-        //console.log("getWHS sucess");
-        return whs;
-    } else { return false; }
-  }
-  function setVersion(Version){
-      var whs_url = "";
-      //Manage Lib version by setting version number in localStorage
-      localStorage.removeItem('whs_version');
-      localStorage.setItem('whs_version', Version);
-    // clear cached lib and refetch lib
-    if (Version == "master") {
-        // console.log("fetch master");
-        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/master/build/whitestorm.js";
-        // console.log(whs_url);
-    } else if (Version == "dev") {
-        // console.log("fetch dev");
-        whs_url = "https://raw.githubusercontent.com/WhitestormJS/whitestorm.js/dev/build/whitestorm.js";
-        // console.log(whs_url);
-    } else {
-        whs_url = "js/whs/whitestorm." + Version + ".js";
-        // console.log(whs_url);
-    }
-
-    var whs = getWHS(whs_url);
-    if(whs){
-        sessionStorage.setItem('whs', whs);
-    } else {
-        alert("Can not load Core framework, please refresh page");
-    }
-  }
-
-  </script>
-<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-83696871-1', 'auto');
-      ga('send', 'pageview');
-
+        ga('create', 'UA-83696871-1', 'auto');
+        ga('send', 'pageview');
     </script>
 </body>
-</html>
