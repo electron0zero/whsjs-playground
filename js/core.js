@@ -206,16 +206,12 @@
     $("#load").on("click", function() {
         //console.log("Load");
         var store;
-        if (localStorage.core) {
-        store = JSON.parse(localStorage.core);
-        if (store.js == "") {
+        store = JSON.parse(localStorage.getItem("core"));
+        if (store == "") {
             alert("local Storage is empty, nothing to load...")
         } else {
-            jsField.setValue(store.js);
+            jsField.setValue(store);
             jsField.clearSelection();
-        }
-        } else {
-        alert("No previous session found...");
         }
     });
 
@@ -387,7 +383,8 @@
 
         if(!isURLHaveParams){
             // we don't have params, load hello world example
-            return "https://raw.githubusercontent.com/WhitestormJS/playground/gh-pages/examples/demo/helloworld.js"
+            // take account for /# and use only origin (protocol + hostname + port)
+            return window.location.origin + "/examples/demo/helloworld.js";
         }
 
         if(!params.code && params.example && params.dir) {
