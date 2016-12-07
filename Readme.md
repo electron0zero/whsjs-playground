@@ -1,7 +1,7 @@
 ## Playground
 ###### :computer: Playground to play with Whitestorm.js right into your browser
 
-### :computer: :link: [Playground](http://whitestormjs.xyz/playground/)
+### :computer: :link: [Playground](http://playground.whsjs.io/)
 
 -------------
 

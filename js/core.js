@@ -387,7 +387,10 @@
         if(!isURLHaveParams){
             // we don't have params, load hello world example
             // take account for /# and use only origin (protocol + hostname + port)
-            return window.location.origin + "/examples/demo/helloworld.js";
+            // return window.location.origin + "/examples/demo/helloworld.js";
+            // using return as per above statement caused all content in single line(lf line ending)
+            // using raw github file fixes it
+            return "https://raw.githubusercontent.com/WhitestormJS/playground/gh-pages/examples/demo/helloworld.js"
         }
 
         if(!params.code && params.example && params.dir) {
