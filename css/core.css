@@ -129,17 +129,27 @@ section:after {
 }
 
 .btn {
-    padding: 0.3125rem;
     background: #eaeaea;
-    color: #777;
-    border: 1px solid #cdcdcd;
-    border-radius: 4px !important;
-    font-family: "Clear Sans";
-    font-size: .75em;
-    text-shadow: rgba(255,255,255,0.5) 0 1px 2px;
-    text-decoration: none;
     outline: none;
     text-align: center;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+    -webkit-transition: background 0.5s ease-in-out;
+    -moz-transition: background 0.5s ease-in-out;
+    -o-transition: background 0.5s ease-in-out;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0.5), 0 1px 1px #0e74c3;
+    padding: 0 10px;
+    display: inline-block;
+    line-height: 30px;
+    text-decoration: none;
+    border: none;
+    margin: 5px 2px;
+    background-color: #373b3e !important;
+    color: white !important;
+    font-family: Whitney SSm A,Whitney SSm B,Helvetica,Arial,sans-serif;
 }
 
 .btn:hover:not(.btn-active) {
@@ -148,13 +158,17 @@ section:after {
 }
 
 .dropdown {
-    padding: 0.10rem;
+    padding: 6px 12px;
+    padding-bottom: 10px;
+    margin: 5px, 2px;
+    margin-bottom: 0px;
     background: #444;
     color: #FFFFFF;
     border: 1px solid #cdcdcd;
     border-radius: 4px !important;
-    font-family: "Clear Sans";
-    font-size: .90em;
+    border:1px;
+    font-family: Whitney SSm A,Whitney SSm B,Helvetica,Arial,sans-serif;
+    font-size: 14px;
     text-decoration: none;
     outline: none;
 }
@@ -411,28 +425,6 @@ section {
 
 .ace_line span.ace_invisible_eol {
     display: none;
-}
-
-.btn {
-    cursor: pointer;
-    transition: background 0.5s ease-in-out;
-    -webkit-transition: background 0.5s ease-in-out;
-    -moz-transition: background 0.5s ease-in-out;
-    -o-transition: background 0.5s ease-in-out;
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    text-shadow: 0 0 0 rgba(255, 255, 255, 0.5), 0 1px 1px #0e74c3;
-    padding: 0 10px;
-    display: inline-block;
-    line-height: 30px;
-    text-decoration: none;
-    border: none;
-    margin: 5px 2px;
-    background-color: #373b3e !important;
-    color: white !important;
-    font-family: Whitney SSm A,Whitney SSm B,Helvetica,Arial,sans-serif;
 }
 
 .btn::after {

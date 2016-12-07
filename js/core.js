@@ -91,7 +91,8 @@
         whs_version = "dev";
         }
         // set whs_version to selected in dropdown
-        // $("#version_dropdown")
+        $("#version_dropdown").val(whs_version)
+        // fetch and set the selected version
         setVersion(whs_version);
     });
     // END cache
@@ -436,9 +437,8 @@
     // version dropdown
     // on dropdown changed (when user)
     $("#version_dropdown").change(function(){
-        console.log("version_dropdown changed");
         var new_whs_version = $("#version_dropdown option:selected").val()
-        console.log(new_whs_version)
+        // fetch and set the selected version
         setVersion(new_whs_version)
     });
 
@@ -459,7 +459,8 @@
         } else { return false; }
     }
 
-    // helper function to set selected version number in localStorage, fetch and cache the selected version in sessionStorage
+    // helper function to set selected version number in localStorage.
+    // fetch and cache the selected version in sessionStorage
     function setVersion(Version){
         var whs_url = "";
         // manage lib version by setting version number in localStorage
@@ -486,18 +487,19 @@
         }
     }
 
-        // animatedModal js for share modal
-        $("#generate").animatedModal({
-          modalTarget: "share",
-          color: "#ffffff"
-        });
+    // js for modals
 
-        // animatedModal js for fullscreen modal
-        $("#fullscreenToggle").animatedModal({
-          modalTarget: "fullscreen",
-          color: "#ffffff"
-        });
+    // animatedModal js for share modal
+    $("#generate").animatedModal({
+        modalTarget: "share",
+        color: "#ffffff"
+    });
 
+    // animatedModal js for fullscreen modal
+    $("#fullscreenToggle").animatedModal({
+        modalTarget: "fullscreen",
+        color: "#ffffff"
+    });
 
     // Instance the tour
     var tour = new Tour({
@@ -585,6 +587,5 @@
 
     // load example into js editor when window load event occurs
     window.addEventListener("load", loadExample(getExampleURL()), false);
-
 
 })();
