@@ -1,4 +1,4 @@
-# [deprecated] - THIS PROJECT WAS BUILT FOR WHSJS 1.0, IT IS NOT MORE MAINTAINED.
+# [deprecated] - This project was built for [whsjs](https://github.com/WhitestormJS) 1.0, It is not actively maintained
 
 ## Playground
 ###### :computer: Playground to play with Whitestorm.js right into your browser
