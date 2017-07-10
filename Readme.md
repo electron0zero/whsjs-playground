@@ -18,7 +18,7 @@
 
 ##  Screenshots
 
-<a><img src="https://github.com/WhitestormJS/playground/raw/gh-pages/images/screen1.png" ></a>
+<a><img src="images/screen1.png" ></a>
 
 --------------------------------------------------
 Inspired and Inherited from [CloudEdit](https://github.com/TheInsomniac/CloudEdit)
